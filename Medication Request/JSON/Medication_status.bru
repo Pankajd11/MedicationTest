@@ -1,0 +1,25 @@
+meta {
+  name: Medication_status
+  type: http
+  seq: 12
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationRequest?status=unknown
+  body: none
+  auth: bearer
+}
+
+params:query {
+  status: unknown
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  Accept: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}

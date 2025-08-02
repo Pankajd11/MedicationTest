@@ -1,0 +1,15 @@
+meta {
+  name: clearcache
+  type: http
+  seq: 2
+}
+
+delete {
+  url: {{im1asurl}}api/v2/fhir/cache/reset
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}

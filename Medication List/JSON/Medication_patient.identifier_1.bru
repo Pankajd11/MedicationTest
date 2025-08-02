@@ -1,0 +1,25 @@
+meta {
+  name: Medication_patient.identifier_1
+  type: http
+  seq: 12
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/List?patient.identifier=456
+  body: none
+  auth: bearer
+}
+
+params:query {
+  patient.identifier: 456
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

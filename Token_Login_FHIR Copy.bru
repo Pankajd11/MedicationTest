@@ -1,0 +1,26 @@
+meta {
+  name: Token_Login_FHIR Copy
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{URLToken}}token
+  body: formUrlEncoded
+  auth: none
+}
+
+body:form-urlencoded {
+  grant_type: client_credentials
+  client_id: 00512cd7-d9a2-4928-936a-3e8b4531274c
+  client_secret: somesecret
+  scope: user/MedicationRequest.rs user/MedicationAdministration.rs user/List.rs user/MedicationStatement.rs user/Medication.rs user/MedicationRequest.crus user/MedicationAdministration.crus user/List.crus user/MedicationStatement.crus user/Medication.crus user/Patient.rs user/Patient.crus user/Practitioner.rs user/Encounter.rs user/Practitioner.crus user/Encounter.crus user/Condition.rs
+  ~: 
+}
+
+tests {
+  var jsonData = res.getBody()
+  if(jsonData && jsonData.access_token){
+  // postman.setGlobalVariable("token", 'bearer ' + jsonData.access_token); 
+  }
+}

@@ -1,0 +1,27 @@
+meta {
+  name: Medication_ingredientcode
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/Medication?ingredient.code=http://fhir.de/CodeSystem/bfarm/atc|R07AA
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ingredient.code: http://fhir.de/CodeSystem/bfarm/atc|R07AA
+  ~Authorization: https://RD-VM27.rd.dtcs.local/iM1AS_ORAST1/
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+  Authorization: Bearer {{token}}
+}
+
+auth:bearer {
+  token: {{token}}
+}

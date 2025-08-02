@@ -1,0 +1,179 @@
+meta {
+  name: SaveMedication
+  type: http
+  seq: 10
+}
+
+put {
+  url: https://rd-vm01.rd.dtcs.local/iM1AS_QO999/api/v2/fhir/Medication/404&enablelogging=true&disablepaging=false
+  body: xml
+  auth: none
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/xml
+  Authorization: {{token}}
+}
+
+body:xml {
+  <Medication xmlns="http://hl7.org/fhir">
+  <id value="404" />
+      <meta>
+          <profile value="https://gematik.de/fhir/isik/v2/Medikation/StructureDefinition/ISiKMedikament" />
+      </meta>
+  	<code>
+      <coding>
+              <system value="http://fhir.de/CodeSystem/ifa/pzn" />
+              <code value="3754679" />
+              <display value="BELOC ZOK " />
+      </coding>
+      <coding>
+              <system value="http://fhir.de/CodeSystem/bfarm/atc" />
+              <code value="R07AA" />
+              <display value="Surfactantgabe bei Neugeborenen" />
+      </coding>
+  	<coding>
+              <system value="http://fhir.de/CodeSystem/abdata/wg14" />
+              <code value="HI_CMV" />
+              <display value="Transfusion von Plasma und Plasmabestandteilen und gentechnisch hergestellten Plasmaproteinen: Human-Immunglobulin, spezifisch gegen Zytomeglie-Virus" />
+      </coding>
+  		<text value="Infusion bestehend aus 85mg Doxorubicin aufgeloest zur Verabreichung in 250ml 5-%iger (50 mg/ml) Glucose-Infusionsloesung update" />
+      </code>	
+       <status value="inactive"/>
+      <manufacturer>
+  	    <reference value="Organization/#org2"/>
+          <type value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+          <display value="manufacturer has supplied drug"/>
+           <identifier value="Observation set" />
+  	</manufacturer>
+      <form>
+          <coding>
+              <system value="http://standardterms.edqm.eu" />
+              <code value="11210000B" />
+              <display value="Solution for infusion" />
+          </coding>
+  		<text value="this is text of form-text-updated, the medicine should be taken orally" />
+      </form>
+      <ingredient>
+       <extension url="https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/wirkstofftyp">
+              <valueCoding>
+                  <system value="https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/CodeSystem/wirkstofftyp" />
+                  <code value="IN1" />
+              </valueCoding>
+          </extension>
+           <extension url="https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/wirkstofftyp">
+              <valueCoding>
+                  <system value="https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/CodeSystem/wirkstofftyp" />
+                  <code value="IN2" />
+              </valueCoding>
+          </extension>
+           <extension url="https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/wirkstofftyp">
+              <valueCoding>
+                  <system value="https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/CodeSystem/wirkstofftyp" />
+                  <code value="IN3" />
+              </valueCoding>
+          </extension>
+          <itemCodeableConcept>
+  		<coding>
+              <system value="http://fhir.de/CodeSystem/bfarm/atc" />
+              <code value="L01XX02" />
+              <display value="L-Asparaginase aus Erwinia chrysanthemi [Erwinase], parenteral" />
+          </coding>
+  		<coding>
+              <system value="http://fhir.de/CodeSystem/abdata/wg14" />
+              <code value="HI_CMV" />
+              <display value="Transfusion von Plasma und Plasmabestandteilen und gentechnisch hergestellten Plasmaproteinen: Human-Immunglobulin, spezifisch gegen Zytomeglie-Virus" />
+          </coding>
+  		<coding>
+              <system value="http://fhir.de/CodeSystem/ifa/pzn" />
+              <code value="3754679" />
+              <display value="BELOC ZOK " />
+          </coding>
+  		<coding>
+              <system value="http://fhir.de/CodeSystem/ask" />
+              <code value="375467912" />
+              <display value="BELOC ZOK ask code" />
+          </coding>
+  		<text value="Ingredient text" />
+          </itemCodeableConcept>
+          <isActive value="true" />
+          <strength>
+              <numerator>
+                  <value value="123456789012345.23542575" />
+                  <unit value="mg" />
+                  <system value="http://unitsofmeasure.org" />
+                  <code value="mg" />
+              </numerator>
+          </strength>
+      </ingredient>
+      <ingredient>
+          <itemReference>
+              <reference value="Substance/001" />
+          </itemReference>
+          <isActive value="true" />
+      </ingredient>
+       <ingredient>
+          <extension url="https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/wirkstofftyp">
+              <valueCoding>
+                  <system value="https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/CodeSystem/wirkstofftyp" />
+                  <code value="IN4" />
+              </valueCoding>
+          </extension>
+          <extension url="https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/wirkstofftyp">
+              <valueCoding>
+                  <system value="https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/CodeSystem/wirkstofftyp" />
+                  <code value="IN5" />
+              </valueCoding>
+          </extension>
+                  <extension url="https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/wirkstofftyp">
+              <valueCoding>
+                  <system value="https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/CodeSystem/wirkstofftyp" />
+                  <code value="IN6" />
+              </valueCoding>
+          </extension>
+          <itemCodeableConcept>
+  		<coding>
+              <system value="http://fhir.de/CodeSystem/bfarm/atc" />
+              <code value="L01XX02" />
+              <display value="L-Asparaginase aus Erwinia chrysanthemi [Erwinase], parenteral" />
+          </coding>
+  		<coding>
+              <system value="http://fhir.de/CodeSystem/abdata/wg14" />
+              <code value="HI_CMV" />
+              <display value="Transfusion von Plasma und Plasmabestandteilen und gentechnisch hergestellten Plasmaproteinen: Human-Immunglobulin, spezifisch gegen Zytomeglie-Virus" />
+          </coding>
+  		<coding>
+              <system value="http://fhir.de/CodeSystem/ifa/pzn" />
+              <code value="3754679" />
+              <display value="BELOC ZOK " />
+          </coding>
+  		<coding>
+              <system value="http://fhir.de/CodeSystem/ask" />
+              <code value="375467912" />
+              <display value="BELOC ZOK ask code" />
+          </coding>
+  		<text value="Ingredient text" />
+          </itemCodeableConcept>
+          <isActive value="true" />
+          <strength>
+              <numerator>
+                  <value value="105.95623487" />
+                  <unit value="mg" />
+                  <system value="http://unitsofmeasure.org" />
+                  <code value="mg" />
+              </numerator>
+              <denominator>
+                  <value value="2410.0123569" />
+                  <unit value="Milliliter" />
+                  <system value="http://unitsofmeasure.org" />
+                  <code value="mL" />
+              </denominator>
+          </strength>
+      </ingredient>
+  	<batch>
+            <lotNumber value="9876543215265" />
+            <expirationDate value="9999-12-31" />
+          </batch>
+  </Medication>
+}

@@ -1,0 +1,355 @@
+meta {
+  name: SaveMedication JSON Max data
+  type: http
+  seq: 23
+}
+
+put {
+  url: {{im1asurl}}api/v3/fhir/MedicationAdministration/362
+  body: json
+  auth: bearer
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  content: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "partOf": [
+          {
+              "reference": "MedicationAdministration/MedicationAdministration01",
+              "identifier": {
+                  "value": "MedicationAdministration01"
+              },
+              "display": "MedicationAdministration01 partOf reference"
+          },
+          {
+              "reference": "Procedure/Procedure01",
+              "identifier": {
+                  "value": "Procedure01"
+              },
+              "display": "Procedure01 partOf reference"
+          }
+      ],
+      "status": "entered-in-error" ,
+      "instantiates": [
+          "http://google.com",
+          "http://google1.com"
+      ],
+      "statusReason": [
+          {
+              "coding": [
+                  {
+                      "system": "http://snomed.info/sct",
+                      "code": "42752001",
+                      "display": "Due to"
+                  },
+                  {
+                      "system": "http://snomed.info/sct",
+                      "code": "118169006",
+                      "display": "Specimen source topography"
+                  }
+              ],
+              "text": "Status-reason text"
+          },
+          {
+              "coding": [
+                  {
+                      "system": "http://snomed.info/sct",
+                      "code": "42752001",
+                      "display": "Due to - number 2"
+                  },
+                  {
+                      "system": "http://snomed.info/sct",
+                      "code": "118169006",
+                      "display": "Specimen source topography"
+                  }
+              ],
+              "text": "Status-reason text --- number 2"
+          }
+      ],
+       "reasonCode": [
+          {
+              "coding": [
+                  {
+                      "system": "http://snomed.info/sct",
+                      "code": "42752001",
+                      "display": "reason01"
+                  },
+                  {
+                      "system": "http://snomed.info/sct",
+                      "code": "118169006",
+                      "display": "reason02"
+                  }
+              ],
+              "text": "Status-reason text"
+          },
+          {
+              "coding": [
+                  {
+                      "system": "http://snomed.info/sct",
+                      "code": "42752001",
+                      "display": "reason03"
+                  },
+                  {
+                      "system": "http://snomed.info/sct",
+                      "code": "118169006",
+                      "display": "reason04"
+                  }
+              ],
+              "text": "reason code text"
+          }
+      ],
+      "category": {
+          "coding": [
+              {
+                  "system": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
+                  "code": "outpatient",
+                  "display": "Outpatient-2"
+              },
+              {
+                  "system": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
+                  "code": "discharge",
+                  "display": "Discharge-2"
+              }
+          ],
+          "text": "Category-2 text"
+      },
+      "medicationCodeableConcept": {
+          "coding": [
+              {
+                  "system": "http://fhir.de/CodeSystem/bfarm/atc",
+                  "code": "ATCV03AB23",
+                  "display": "ORS"
+              },
+              {
+                  "system": "http://fhir.de/CodeSystem/ifa/pzn",
+                  "code": "PZN3AB24",
+                  "display": "Disprin"
+              },
+              {
+                  "system": "http://fhir.de/CodeSystem/abdata/wg14",
+                  "code": "WG143AB24",
+                  "display": "Paramcetamol"
+              }
+          ],
+          "text": "Infusion bestehend aus 85mg Doxorubicin aufgeloest zur Verabreichung in 250ml 5-%iger (50 mg/ml) Glucose-Infusionsloesung"
+      },
+      "subject": {
+          "reference": "Patient/741",
+          "identifier": {
+              "value": "741"
+          },
+          "display": "Patient Subject reference"
+      },
+      "context": {
+          "reference": "Encounter/EncounterContext01",
+          "identifier": {
+              "value": "EncounterContext01"
+          },
+          "display": "EncounterContext01 context"
+      },
+      "effectiveDateTime": "2024-05-10",
+      "performer": [
+          {
+              "function": {
+                  "coding": [
+                      {
+                          "system": "http://fhir.de/CodeSystem/abdata/wg14",
+                          "code": "WG143AB24",
+                          "display": "Paramcetamol"
+                      },
+                      {
+                          "system": "http://fhir.de/CodeSystem/abdata/wg14",
+                          "code": "WG143AB24",
+                          "display": "Paramcetamol2"
+                      }
+                  ],
+                  "text": "Infusion bestehend Paramcetamol2"
+              },
+              "actor": {
+                  "reference": "Practitioner/PractitionerWalterArzt-Performer",
+                  "identifier": {
+                      "value": "PractitionerWalterArzt-Performer"
+                  },
+                  "display": "Practitioner"
+              }
+          },
+          {
+              "function": {
+                  "coding": [
+                      {
+                          "system": "http://fhir.de/CodeSystem/abdata/wg14",
+                          "code": "WG143AB24",
+                          "display": "Paramcetamol"
+                      },
+                      {
+                          "system": "http://fhir.de/CodeSystem/abdata/wg14",
+                          "code": "WG143AB24",
+                          "display": "Paramcetamol2"
+                      }
+                  ],
+                  "text": "Infusion bestehend Paramcetamol2"
+              },
+              "actor": {
+                  "reference": "Practitioner/PractitionerWalterArzt-Performer",
+                  "identifier": {
+                      "value": "PractitionerWalterArzt-Performer"
+                  },
+                  "display": "Practitioner"
+              }
+          }
+      ],
+      "reasonReference": [
+          {
+              "reference": "Condition/ConditionReasonreference01",
+              "identifier": {
+                  "value": "ConditionReasonreference01"
+              },
+              "display": "ConditionReasonreference01 partOf reference"
+          },
+          {
+              "reference": "Observation/ObservationReasonreference02",
+              "identifier": {
+                  "value": "ObservationReasonreference02"
+              },
+              "display": "ObservationReasonreference02 partOf reference"
+          },
+          {
+              "reference": "DiagnosticReport/DiagnosticReportReasonreference02",
+              "identifier": {
+                  "value": "DiagnosticReportReasonreference02"
+              },
+              "display": "DiagnosticReportReasonreference02 partOf reference"
+          }
+      ],
+      "request": {
+          "reference": "MedicationRequest/MedicationRequest001",
+          "identifier": {
+              "value": "MedicationRequest001"
+          },
+          "display": "MedicationRequest001"
+      },
+      "device": [
+          {
+              "reference": "Device/Device01",
+              "identifier": {
+                  "value": "Device01"
+              },
+              "display": "Device01"
+          },
+          {
+              "reference": "Device/Device02",
+              "identifier": {
+                  "value": "Device02"
+              },
+              "display": "Device02"
+          }
+      ],
+      "note": [
+          {
+              "authorReference": {
+                  "reference": "Practitioner/AuthRef001",
+                  "identifier": {
+                      "value": "AuthRef001"
+                  },
+                  "display": "Practitioner"
+              },
+              "time": "1993-07-27",
+              "text": "this is authors note"
+          },
+          {
+              "authorString": "Practitioner/AuthRef001",
+              "time": "1993-07-28",
+              "text": "this is authors note"
+          }
+      ],
+      "dosage": {
+          "text": "additional dosage text",
+          "site": {
+              "coding": [
+                  {
+                      "system": "http://snomed.info/sct",
+                      "code": "29721302",
+                      "display": "Stomach left-side (finding)"
+                  },
+                  {
+                      "system": "http://snomed.info/sct",
+                      "code": "297213033",
+                      "display": "Stomach middle (finding)"
+                  }
+              ],
+              "text": "site of the finding"
+          },
+          "route": {
+              "coding": [
+                  {
+                      "system": "http://standardterms.edqm.eu",
+                      "code": "29721302",
+                      "display": "Mouth (finding)"
+                  },
+                  {
+                      "system": "http://snomed.info/sct",
+                      "code": "297213033",
+                      "display": "Oral"
+                  }
+              ],
+              "text": "site of the finding"
+          },
+          "method": {
+              "coding": [
+                  {
+                      "system": "http://snomed.info/sct",
+                      "code": "Units",
+                      "display": "Units"
+                  }
+              ]
+          },
+          "dose": {
+              "value": "1.0",
+              "unit": "Brausetablette",
+              "system": "http://unitsofmeasure.org",
+              "code": "1"
+          },
+          "rateQuantity": {
+              "value": "22.0",
+              "unit": "Wrausetablette",
+              "system": "http://unitsofmeasure.org",
+              "code": "22"
+          }
+      },
+      "eventHistory": [
+          {
+              "reference": "Provenance/Provenance01",
+              "identifier": {
+                  "value": "Provenance01"
+              },
+              "display": "Author's Signature"
+          }
+      ],
+      "supportingInformation": [
+          {
+              "reference": "Resource/Provenance01",
+              "identifier": {
+                  "value": "Resource001"
+              },
+              "display": "Resource's Signature"
+          }
+      ],
+      "resourceType": "MedicationAdministration",
+      "id": "362",
+      "meta": {
+          "lastUpdated": "2024-05-09T18:39:53.184+05:30",
+          "profile": [
+              "https://gematik.de/fhir/isik/v3/Medikation/StructureDefinition/ISiKMedikationsVerabreichung"
+          ]
+      }
+  }
+}

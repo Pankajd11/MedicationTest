@@ -1,0 +1,26 @@
+meta {
+  name: Medication_Effective DateTime
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationAdministration?effective-time=2024-05-10&enablelogging=True
+  body: none
+  auth: bearer
+}
+
+params:query {
+  effective-time: 2024-05-10
+  enablelogging: True
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

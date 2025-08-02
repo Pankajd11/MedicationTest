@@ -1,0 +1,28 @@
+meta {
+  name: MedicationStat_context
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationStatement?context=Encounter/1129227&_include=MedicationStatement:medication&disablepaging=true&enablelogging=true
+  body: none
+  auth: bearer
+}
+
+params:query {
+  context: Encounter/1129227
+  _include: MedicationStatement:medication
+  disablepaging: true
+  enablelogging: true
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  Accept: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}

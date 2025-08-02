@@ -1,0 +1,67 @@
+meta {
+  name: Medication_ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{im1asurl}}/api/v2/fhir/Medication?_id={{id}}
+  body: none
+  auth: bearer
+}
+
+params:query {
+  _id: {{id}}
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+  ~Authorization: Bearer {{token}}
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+vars:pre-request {
+  id: 305
+}
+
+tests {
+  const response=res.getBody();
+  var convert = require('xml-js');
+  var result = convert.xml2json(response, {compact: true, spaces: 4});
+  result=JSON.parse(result); 
+  //console.log("abcd"+result)
+  
+  
+  test ("To check the any value",function(){
+    expect (result.Bundle.entry.resource.Medication.meta.profile._attributes.value).to.equal("https://gematik.de/fhir/isik/v2/Medikation/StructureDefinition/ISiKMedikament");
+    
+  })
+  
+  try
+    {
+  const xpath = require('xpath');
+  const dom = require('xmldom').DOMParser;
+  const doc = new dom().parseFromString(res.body, 'text/xml');
+  var x = doc.getElementsByTagName("id");
+  console.log("xm"+x[0].attributes[0].value)
+  
+  test ("To check the id",function(){
+  expect (x[0].attributes[0].value).to.equal("305");
+  })
+      
+    }
+   catch(e){
+        console.log("saveApiResponse Exception occured"+e)
+       
+    }
+  
+  test("Status code is 200", function () {
+  expect(res.getStatus()).to.equal(200);
+  });
+  
+}

@@ -1,0 +1,353 @@
+meta {
+  name: SaveMedication
+  type: http
+  seq: 16
+}
+
+put {
+  url: https://rd-vm01.rd.dtcs.local/iM1AS_QO999/api/v2/fhir/MedicationStatement/524
+  body: xml
+  auth: bearer
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:xml {
+  <?xml version="1.0" encoding="utf-8"?>
+  <MedicationStatement xmlns="http://hl7.org/fhir">
+      <id value="524" />
+      <meta>
+          <profile value="https://gematik.de/fhir/isik/v2/Medikation/StructureDefinition/ISiKMedikationsInformation"/>
+      </meta>
+      <status value="not-taken"/>
+      <identifier>
+          <use value="official"/>
+          <system value="http://www.bmc.nl/portal/prescriptions"/>
+          <value value="12345689"/>
+      </identifier>
+      <subject>
+          <reference value="Patient/259195" />
+          <identifier>
+              <value value="5150796"/>
+              <system value="http://mein-krankenhaus.example/fhir/sid/patienten" />
+          </identifier>
+          <display value="Patient Subject reference"/>
+      </subject>
+      <basedOn>
+          <reference value="MedicationRequest/MedReq01"/>
+          <identifier>
+              <value value="MedReq01"/>
+          </identifier>
+          <display value="MedicationRequest basedOn reference"/>
+      </basedOn>
+      <basedOn>
+          <reference value="CarePlan/CarePlan01"/>
+          <identifier>
+              <value value="CarePlan01"/>
+          </identifier>
+          <display value="CarePlan basedOn reference"/>
+      </basedOn>
+      <basedOn>
+          <reference value="ServiceRequest/ServiceReq01"/>
+          <identifier>
+              <value value="ServiceRequest"/>
+          </identifier>
+          <display value="ServiceRequest basedOn reference"/>
+      </basedOn>
+      <partOf>
+          <reference value="MedicationAdministration/789"/>
+          <identifier>
+              <value value="MedicationAdministration01"/>
+          </identifier>
+          <display value="MedicationAdministration01 partOf reference"/>
+      </partOf>
+      <partOf>
+          <reference value="MedicationDispense/MedicationDispense01"/>
+          <identifier>
+              <value value="MedicationDispense01"/>
+          </identifier>
+          <display value="MedicationDispense01 partOf reference"/>
+      </partOf>
+      <partOf>
+          <reference value="MedicationStatement/MedicationStatement01"/>
+          <identifier>
+              <value value="MedicationStatement01"/>
+          </identifier>
+          <display value="MedicationStatement01 partOf reference"/>
+      </partOf>
+      <partOf>
+          <reference value="Procedure/Procedure01"/>
+          <identifier>
+              <value value="Procedure01"/>
+          </identifier>
+          <display value="Procedure01 partOf reference"/>
+      </partOf>
+      <partOf>
+          <reference value="Observation/Observation01"/>
+          <identifier>
+              <value value="Observation01"/>
+          </identifier>
+          <display value="Observation01 partOf reference"/>
+      </partOf>
+      <statusReason>
+          <coding>
+              <system value="http://snomed.info/sct"/>
+              <code value="42752001"/>
+              <display value="Due to"/>
+          </coding>
+          <coding>
+              <system value="http://snomed.info/sct"/>
+              <code value="118169006"/>
+              <display value="Specimen source topography"/>
+          </coding>
+          <text value="Status-reason text"/>
+      </statusReason>
+      <statusReason>
+          <coding>
+              <system value="http://snomed.info/sct"/>
+              <code value="42752001"/>
+              <display value="Due to - number 2"/>
+          </coding>
+          <coding>
+              <system value="http://snomed.info/sct"/>
+              <code value="118169006"/>
+              <display value="Specimen source topography"/>
+          </coding>
+          <text value="Status-reason text --- number 2"/>
+      </statusReason>
+      <reasonCode>
+          <coding>
+              <system value="http://hl7.org/fhir/StructureDefinition/uri"/>
+              <code value="160245001"/>
+              <display value="No current problems or disability"/>
+          </coding>
+          <text value="Status-reason text --- number 2 reason Code"/>
+      </reasonCode>
+      <category>
+          <coding>
+              <system value="http://terminology.hl7.org/CodeSystem/medicationrequest-category"/>
+              <code value="outpatient"/>
+              <display value="Outpatient-2"/>
+          </coding>
+          <coding>
+              <system value="http://terminology.hl7.org/CodeSystem/medicationrequest-category"/>
+              <code value="discharge"/>
+              <display value="Discharge-2"/>
+          </coding>
+          <coding>
+              <system value="http://terminology.hl7.org/CodeSystem/medicationrequest-category"/>
+              <code value="patientspecified"/>
+              <display value="Patient Specified"/>
+          </coding>
+          <coding>
+              <system value="http://terminology.hl7.org/CodeSystem/medicationrequest-category"/>
+              <code value="community"/>
+              <display value="Community"/>
+          </coding>
+          <text value="Category-2 text"/>
+      </category>
+      <context>
+          <reference value="Encounter/1129227"/>
+          <identifier>
+              <value value="1129227"/>
+              <system value="http://mein-krankenhaus.example/fhir/sid/patienten" />
+          </identifier>
+          <display value="Patient Subject reference"/>
+      </context>
+      <medicationReference>
+          <reference value="Medication/348" />
+      </medicationReference>
+      <medicationCodeableConcept>
+          <coding>
+              <system value="http://fhir.de/CodeSystem/bfarm/atc" />
+              <code value="ATCV03AB23" />
+              <display value="ORS" />
+          </coding>
+          <coding>
+              <system value="http://fhir.de/CodeSystem/ifa/pzn" />
+              <code value="PZN3AB24" />
+              <display value="Disprin" />
+          </coding>
+          <coding>
+              <system value="http://fhir.de/CodeSystem/abdata/wg14" />
+              <code value="WG143AB24" />
+              <display value="Paramcetamol" />
+          </coding>
+          <text value="Infusion bestehend aus 85mg Doxorubicin aufgeloest zur Verabreichung in 250ml 5-%iger (50 mg/ml) Glucose-Infusionsloesung" />
+      </medicationCodeableConcept>
+      <effectivePeriod>
+          <start value="2015-01-15"/>
+      </effectivePeriod>
+      <dateAsserted value="2021-07-01"/>
+      <reasonReference>
+          <reference value="Condition/ConditionReasonreference01"/>
+          <identifier>
+              <value value="ConditionReasonreference01"/>
+          </identifier>
+          <display value="ConditionReasonreference01 partOf reference"/>
+      </reasonReference>
+      <reasonReference>
+          <reference value="Observation/ObservationReasonreference02"/>
+          <identifier>
+              <value value="ObservationReasonreference02"/>
+          </identifier>
+          <display value="ObservationReasonreference02 partOf reference"/>
+      </reasonReference>
+      <derivedFrom>
+          <reference value="Encounter/EncounterDerivedFrom01"/>
+          <identifier>
+              <value value="EncounterDerivedFrom01"/>
+          </identifier>
+          <display value="EncounterDerivedFrom01 partOf reference"/>
+      </derivedFrom>
+      <derivedFrom>
+          <reference value="Patient/PatientDerivedFrom01"/>
+          <identifier>
+              <value value="PatientDerivedFrom01"/>
+          </identifier>
+          <display value="PatientDerivedFrom01 partOf reference"/>
+      </derivedFrom>
+      <derivedFrom>
+          <reference value="MedicationRequest/522"/>
+          <identifier>
+              <value value="MedicationRequest522"/>
+          </identifier>
+          <display value="MedicationRequest partOf reference"/>
+      </derivedFrom>
+      <informationSource>
+          <reference value="PractitionerRole/PractitionerRole ArunAutomate"/>
+          <identifier>
+              <value value="PractitionerRole ArunAutomate01"/>
+          </identifier>
+          <display value="PractitionerRole ArunAutomate partOf reference"/>
+      </informationSource>
+      <note>
+          <text value="Take with food to reduce the risk of stomach upset."/>
+          <authorString value="This is an patient author"/>
+          <authorReference>
+              <reference value="Practitioner/example-provider"/>
+              <display value="Dr. Jane Smith"/>
+          </authorReference>
+          <time value="2021-07-01"/>
+          <text value="Dopamine 4mcg/kg/min"/>
+      </note>
+      <dosage>
+          <sequence value="1"/>
+          <text value="Dopamine 4mcg/kg/min"/>
+          <additionalInstruction>
+              <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="6064005"/>
+                  <display value="Topical Route"/>
+              </coding>
+              <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="118168003"/>
+                  <display value="Specimen source morphology"/>
+              </coding>
+              <text value="additional instruction text"/>
+          </additionalInstruction>
+          <additionalInstruction>
+              <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="6064006"/>
+                  <display value="Topical Route"/>
+              </coding>
+              <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="1181680066"/>
+                  <display value="Specimen source morphology"/>
+              </coding>
+              <text value="additional second instruction text"/>
+          </additionalInstruction>
+          <patientInstruction value="patient instruction do not feed me!"/>
+          <timing>
+              <event value="9999-12-31"/>
+              <event value="2015-01-15"/>
+              <event value="2015-01-16"/>
+              <event value="2015-01-15"/>
+              <event value="2015-01-16"/>
+              <repeat>
+                  <boundsRange>
+                      <low>
+                          <value value="1"/>
+                          <unit value="Brausetablette"/>
+                          <system value="http://unitsofmeasure.org"/>
+                          <code value="1"/>
+                      </low>
+                      <high>
+                          <value value="2"/>
+                          <unit value="Brausetablette"/>
+                          <system value="http://unitsofmeasure.org"/>
+                          <code value="2"/>
+                      </high>
+                  </boundsRange>
+                  <when value="MORN"/>
+                  <when value="NOON"/>
+                  <when value="EVE"/>
+                  <dayOfWeek value="thu"/>
+                  <dayOfWeek value="fri"/>
+                  <count value="3"/>
+                  <!--positiveInt-->
+                  <countMax value="5"/>
+                  <!--positiveInt-->
+                  <duration value="10.5"/>
+                  <!--decimal-->
+                  <durationMax value="25.5"/>
+                  <!--decimal-->
+                  <durationUnit value="h"/>
+                  <frequency value="8"/>
+                  <!--positiveInt-->
+                  <frequencyMax value="18"/>
+                  <!--positiveInt-->
+                  <period value="6"/>
+                  <!--decimal-->
+                  <periodMax value="12"/>
+                  <!--decimal-->
+                  <periodUnit value="h"/>
+                  <!--<dayOfWeek value="mon"/> -->
+                  <timeOfDay value="23:59:59"/>
+                  <timeOfDay value="00:59:59"/>
+                  <timeOfDay value="00:00:59"/>
+                  <offset value="1"/>
+                  <!--unsignedInt-->
+              </repeat>
+              <code>
+                  <coding>
+                      <system value="http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation"/>
+                      <code value="BID"/>
+                      <display value="BID"/>
+                  </coding>
+                  <coding>
+                      <system value="http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation"/>
+                      <code value="BID"/>
+                      <display value="BID-2"/>
+                  </coding>
+                  <text value="time code text - 1"/>
+              </code>
+              <repeat>
+                  <boundsRange>
+                      <low>
+                          <decimal value="12.5"/>
+                          <system value="http://hl7.org/fhir/StructureDefinition/uri"/>
+                          <code value="UCUM"/>
+                      </low>
+                      <high>
+                          <decimal value="12.6"/>
+                          <system value="http://hl7.org/fhir/StructureDefinition/uri"/>
+                          <code value="UCUM"/>
+                      </high>
+                  </boundsRange>
+              </repeat>
+          </timing>
+      </dosage>
+  </MedicationStatement>
+}

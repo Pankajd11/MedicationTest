@@ -1,0 +1,25 @@
+meta {
+  name: Medication_Status
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationAdministration?status=in-progress
+  body: none
+  auth: bearer
+}
+
+params:query {
+  status: in-progress
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

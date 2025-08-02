@@ -1,0 +1,25 @@
+meta {
+  name: Medication_performer
+  type: http
+  seq: 15
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationAdministration?performer=PractitionerRole/KasseRoos
+  body: none
+  auth: bearer
+}
+
+params:query {
+  performer: PractitionerRole/KasseRoos
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  Accept: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}

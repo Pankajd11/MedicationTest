@@ -1,0 +1,25 @@
+meta {
+  name: Medication_Medicationcode
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationRequest?medication.code=http://fhir.de/CodeSystem/bfarm/pzn|PZN3AB24
+  body: none
+  auth: bearer
+}
+
+params:query {
+  medication.code: http://fhir.de/CodeSystem/bfarm/pzn|PZN3AB24
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

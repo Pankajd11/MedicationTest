@@ -1,0 +1,25 @@
+meta {
+  name: MedicationStat_status
+  type: http
+  seq: 14
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationStatement?status=intended
+  body: none
+  auth: bearer
+}
+
+params:query {
+  status: intended
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  Accept: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}

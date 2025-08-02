@@ -1,0 +1,26 @@
+meta {
+  name: Medication_date
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/List?date=2021-07-04&enablelogging=True
+  body: none
+  auth: bearer
+}
+
+params:query {
+  date: 2021-07-04
+  enablelogging: True
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

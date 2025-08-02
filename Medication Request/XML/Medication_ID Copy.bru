@@ -1,0 +1,19 @@
+meta {
+  name: Medication_ID Copy
+  type: http
+  seq: 4
+}
+
+get {
+  url: https://rd-vm01.rd.dtcs.local/iM1AS_QO999/api/v2/fhir/MedicationRequest?code=V03AB23
+  body: none
+  auth: none
+}
+
+params:query {
+  code: V03AB23
+}
+
+headers {
+  Authorization: Bearer {{token}}
+}

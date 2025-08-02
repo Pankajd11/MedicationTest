@@ -1,0 +1,87 @@
+meta {
+  name: SaveMedication JSON Max data
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{im1asurl}}api/v2/fhir/List/9
+  body: json
+  auth: bearer
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json; charset=utf-8
+  content: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "resourceType": "List",
+      "id": "9",
+      "meta": {
+          "profile":  [
+              "https://gematik.de/fhir/isik/v2/Medikation/StructureDefinition/ISiKMedikationsListe"
+          ]
+      },
+      "code": {
+          "coding":  [
+              {
+                  "system": "http://terminology.hl7.org/CodeSystem/list-example-use-codes",
+                  "code": "medications"
+              }
+          ]
+      },
+      "status": "current",
+      "mode": "snapshot",
+      "subject": {
+          "reference": "Patient/PatientinMusterfrau"
+      },
+      "encounter": {
+          "reference": "Encounter/Versorgungsstellenkontakt"
+      },
+      "date": "2021-07-04",
+      "entry":  [
+          {
+              "date": "2021-07-01",
+              "item": {
+                  "reference": "MedicationStatement/ExampleISiKMedikationsInformation1"
+              }
+          },
+          {
+              "date": "2021-07-04",
+              "item": {
+                  "reference": "MedicationStatement/ExampleISiKMedikationsInformation2"
+              }
+          }
+      ]
+  }
+}
+
+tests {
+  test("To check API Status",function(){
+      expect(res.getStatus()).to.equal(201)
+  });
+  
+  var tv4 = require('tv4');
+  var responseBody = JSON.stringify(res.getBody());
+  
+  
+  // Extract the JSON Schema from the environment or collection
+  var jsonSchema = bru.getVar("schemaMddication");
+  console.log(jsonSchema)
+  //var result = tv4.validate(responseBody, jsonSchema);
+  var responseBody = xml2Json(responseBody);
+  var result = tv4.validate(responseBody, jsonSchema);
+  
+  // Check if validation passed
+  test("Verifying Schema validation", function () {
+      expect(result).to.be.true;
+  });
+  
+}

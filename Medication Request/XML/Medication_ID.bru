@@ -1,0 +1,15 @@
+meta {
+  name: Medication_ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{im1asurl}}api/v3/fhir/MedicationRequest/574
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{token}}
+}

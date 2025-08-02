@@ -1,0 +1,309 @@
+meta {
+  name: SaveMedicationAdmintration
+  type: http
+  seq: 21
+}
+
+post {
+  url: https://rd-vm01.rd.dtcs.local/iM1AS_QO999/api/v3/fhir/MedicationAdministration
+  body: xml
+  auth: bearer
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/xml
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:xml {
+  <?xml version="1.0" encoding="utf-8"?>
+  <MedicationAdministration xmlns="http://hl7.org/fhir">
+      <meta>
+          <profile value="https://gematik.de/fhir/isik/v2/Medikation/StructureDefinition/ISiKMedikationsVerabreichung"/>
+      </meta>
+      <instantiates value="http://google.com"/>
+      <instantiates value="http://DTCS.com"/>
+      <partOf>
+          <reference value="MedicationAdministration/MedicationAdministration01" />
+          <identifier>
+              <value value="MedicationAdministration01" />
+          </identifier>
+          <display value="MedicationAdministration01 partOf reference" />
+      </partOf>
+      <partOf>
+          <reference value="Procedure/Procedure01" />
+          <identifier>
+              <value value="Procedure01" />
+          </identifier>
+          <display value="Procedure01 partOf reference" />
+      </partOf>
+      <status value="not-done"/>
+      <statusReason>
+          <coding>
+              <system value="http://snomed.info/sct" />
+              <code value="42752001" />
+              <display value="Due to" />
+          </coding>
+          <coding>
+              <system value="http://snomed.info/sct" />
+              <code value="118169006" />
+              <display value="Specimen source topography" />
+          </coding>
+          <text value="Status-reason text" />
+      </statusReason>
+      <statusReason>
+          <coding>
+              <system value="http://snomed.info/sct" />
+              <code value="42752001" />
+              <display value="Due to - number 2" />
+          </coding>
+          <coding>
+              <system value="http://snomed.info/sct" />
+              <code value="118169006" />
+              <display value="Specimen source topography" />
+          </coding>
+          <text value="Status-reason text --- number 2" />
+      </statusReason>
+      <category>
+          <coding>
+              <system value="http://terminology.hl7.org/CodeSystem/medicationrequest-category" />
+              <code value="outpatient" />
+              <display value="Outpatient-2" />
+          </coding>
+          <coding>
+              <system value="http://terminology.hl7.org/CodeSystem/medicationrequest-category" />
+              <code value="discharge" />
+              <display value="Discharge-2" />
+          </coding>
+          <text value="Category-2 text" />
+      </category>
+      <subject>
+          <reference value="Patient/741" />
+          <identifier>
+              <value value="741" />
+          </identifier>
+          <display value="Patient Subject reference" />
+      </subject>
+      <context>
+          <reference value="Encounter/1129353" />
+          <identifier>
+              <value value="4417716" />
+          </identifier>
+          <display value=" 4417716 EncounterContext01 context" />
+      </context>
+      <supportingInformation>
+          <reference value="Organization/PatientinMusterfrau"/>
+          <identifier>
+              <value value="652358"/>
+          </identifier>
+          <display value="Org"/>
+      </supportingInformation>
+      <effectivePeriod>
+          <end value="9999-12-31"/>
+      </effectivePeriod>
+      <performer>
+          <function>
+              <coding>
+                  <system value="http://fhir.de/CodeSystem/abdata/wg14"/>
+                  <code value="WG143AB24"/>
+                  <display value="Paramcetamol"/>
+              </coding>
+              <coding>
+                  <system value="http://fhir.de/CodeSystem/abdata/wg14"/>
+                  <code value="WG143AB24"/>
+                  <display value="Paramcetamol2"/>
+              </coding>
+              <text value="Infusion bestehend Paramcetamol2" />
+          </function>
+          <actor>
+              <reference value="Practitioner/PractitionerWalterArzt-Performer"/>
+              <identifier>
+                  <value value="PractitionerWalterArzt-Performer"/>
+              </identifier>
+              <display value="Practitioner"/>
+          </actor>
+      </performer>
+      <performer>
+          <function>
+              <coding>
+                  <system value="http://fhir.de/CodeSystem/abdata/wg14"/>
+                  <code value="WG143AB24"/>
+                  <display value="Paramcetamol"/>
+              </coding>
+              <coding>
+                  <system value="http://fhir.de/CodeSystem/abdata/wg14"/>
+                  <code value="WG143AB24"/>
+                  <display value="Paramcetamol2"/>
+              </coding>
+              <text value="Infusion bestehend Paramcetamol2" />
+          </function>
+          <actor>
+              <reference value="Practitioner/PractitionerWalterArzt-Performer"/>
+              <identifier>
+                  <value value="PractitionerWalterArzt-Performer"/>
+              </identifier>
+              <display value="Practitioner"/>
+          </actor>
+      </performer>
+      <reasonCode>
+          <coding>
+              <system value="http://snomed.info/id/116686009" />
+              <code value="doctor" />
+              <display value="reason-code-3" />
+          </coding>
+          <coding>
+              <system value="http://snomed.info/id/116686010" />
+              <code value="doctor" />
+              <display value="reason-code-2" />
+          </coding>
+          <text value="first reasonCode text value" />
+      </reasonCode>
+      <reasonCode>
+          <coding>
+              <system value="http://snomed.info/id/116686009" />
+              <code value="doctor" />
+              <display value="reason-code-3" />
+          </coding>
+          <coding>
+              <system value="http://snomed.info/id/116686010" />
+              <code value="doctor" />
+              <display value="reason-code-2" />
+          </coding>
+          <text value="second reasonCode text value" />
+      </reasonCode>
+      <medicationReference>
+          <reference value="Medication/medicationReference" />
+      </medicationReference>
+      <reasonReference>
+          <reference value="Condition/ConditionReasonreference01" />
+          <identifier>
+              <value value="ConditionReasonreference01" />
+          </identifier>
+          <display value="ConditionReasonreference01 partOf reference" />
+      </reasonReference>
+      <reasonReference>
+          <reference value="Observation/ObservationReasonreference02" />
+          <identifier>
+              <value value="ObservationReasonreference02" />
+          </identifier>
+          <display value="ObservationReasonreference02 partOf reference" />
+      </reasonReference>
+      <reasonReference>
+          <reference value="DiagnosticReport/DiagnosticReportReasonreference02" />
+          <identifier>
+              <value value="DiagnosticReportReasonreference02" />
+          </identifier>
+          <display value="DiagnosticReportReasonreference02 partOf reference" />
+      </reasonReference>
+      <request>
+          <reference value="MedicationRequest/MedicationRequest001"/>
+          <identifier>
+              <value value="MedicationRequest001"/>
+          </identifier>
+          <display value="MedicationRequest001"/>
+      </request>
+      <device>
+          <reference value="Device/Device01"/>
+          <identifier>
+              <value value="Device01"/>
+          </identifier>
+          <display value="Device01"/>
+      </device>
+      <device>
+          <reference value="Device/Device02"/>
+          <identifier>
+              <value value="Device02"/>
+          </identifier>
+          <display value="Device02"/>
+      </device>
+      <note>
+          <authorReference>
+              <reference value="Practitioner/AuthRef001"/>
+              <identifier>
+                  <value value="AuthRef001"/>
+              </identifier>
+              <display value="Practitioner"/>
+          </authorReference>
+          <time value="1993-07-27"/>
+          <text value="this is authors note"/>
+      </note>
+      <note>
+          <authorString value="Practitioner/AuthRef001"/>
+          <text value="this is authors noteSystems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the "/>
+      </note>
+      <dosage>
+          <text value="additional dosage text"/>
+          <dose>
+              <value value="1111111111111.51111115555555"/>
+              <unit value="Brausetablette"/>
+              <system value="http://unitsofmeasure.org"/>
+              <code value="1"/>
+          </dose>
+          <rateQuantity> 
+              <value value="500000000000000.500000000000"/> 
+              <unit value="min"/>
+              <system value="http://unitsofmeasure.org"/> 
+              <code value="ml/h"/> 
+          </rateQuantity>   
+          <rateRatio>
+              <numerator>
+                  <value value="12.53" />
+                  <unit value="Milliliter" />
+                  <system value="http://unitsofmeasure.org" />
+                  <code value="mL" />
+              </numerator>
+              <denominator>
+                  <value value="32.14" />
+                  <unit value="Milliliter" />
+                  <system value="http://unitsofmeasure.org" />
+                  <code value="mL" />
+              </denominator>
+          </rateRatio>
+          <site>
+              <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="29721302"/>
+                  <display value="Stomach left-side (finding)"/>
+              </coding>
+              <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="297213033"/>
+                  <display value="Stomach middle (finding)"/>
+              </coding>
+              <text value="site of the finding"/>
+          </site>
+          <route>
+              <coding>
+                  <system value="http://standardterms.edqm.eu"/>
+                  <code value="29721302"/>
+                  <display value="Mouth (finding)"/>
+              </coding>
+              <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="297213033"/>
+                  <display value="Oral"/>
+              </coding>
+              <text value="site of the finding"/>
+          </route>
+          <method>
+              <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="Units"/>
+                  <display value="Units"/>
+              </coding>
+               <text value="Method has an Text value"/>
+          </method>
+      </dosage>
+      <eventHistory>
+          <reference value="Provenance/Provenance01"/>
+          <identifier>
+              <value value="Provenance01"/>
+          </identifier>
+          <display value="Author's Signature"/>
+      </eventHistory>
+  </MedicationAdministration>
+}

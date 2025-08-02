@@ -1,0 +1,33 @@
+meta {
+  name: Medication_authoredon
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationRequest?authoredon
+  body: none
+  auth: none
+}
+
+params:query {
+  authoredon: 
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+  Authorization: Bearer {{token}}
+}
+
+tests {
+  //*************************************************************
+  
+  test("Content verification", function () {
+      expect(JSON.stringify(res.getBody())).to.include("2021-07-01");
+  });
+  
+  
+  //************************************************************
+}

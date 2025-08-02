@@ -1,0 +1,29 @@
+meta {
+  name: Medication
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationAdministration/304
+  body: none
+  auth: bearer
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+vars:pre-request {
+  Patientid: 12345
+}
+
+assert {
+  res.patientid: eq {{Patientid}}
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Medication_Context Identifier_1
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationAdministration?context.identifier=4417716&enablelogging=True
+  body: none
+  auth: bearer
+}
+
+params:query {
+  context.identifier: 4417716
+  enablelogging: True
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

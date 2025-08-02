@@ -1,0 +1,385 @@
+meta {
+  name: SaveMedication
+  type: http
+  seq: 17
+}
+
+put {
+  url: https://rd-vm01.rd.dtcs.local/iM1AS_QO999/api/v2/fhir/MedicationRequest/661
+  body: xml
+  auth: bearer
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:xml {
+  <?xml version="1.0" encoding="utf-8"?>
+  <MedicationRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir">
+      <id value="661" />
+      <meta>
+          <profile value="https://gematik.de/fhir/isik/v2/Medikation/StructureDefinition/ISiKMedikationsVerordnung" />
+      </meta>
+      <status value="on-hold" />
+      <intent value="original-order" />
+      <authoredOn value="2021-07-01" />
+      <statusReason>
+          <coding>
+              <system value="http://terminology.hl7.org/CodeSystem/medicationrequest-status-reason"/>
+              <code value="altchoice"/>
+              <display value="Try another treatment first"/>
+          </coding>
+      </statusReason>
+      <category>
+          <coding>
+              <system value="http://hl7.org/fhir/ValueSet/medicationrequest-category" />
+              <code value="inpatient" />
+              <display value="Inpatient" />
+          </coding>
+          <coding>
+              <system value="http://hl7.org/fhir/ValueSet/medicationrequest-category" />
+              <code value="outpatient" />
+              <display value="Outpatient" />
+          </coding>
+          <coding>
+              <system value="http://hl7.org/fhir/ValueSet/medicationrequest-category" />
+              <code value="community" />
+              <display value="Community" />
+          </coding>
+          <coding>
+              <system value="http://hl7.org/fhir/ValueSet/medicationrequest-category" />
+              <code value="discharge" />
+              <display value="Discharge" />
+          </coding>
+      </category>
+      <priority value="stat"/>
+      <medicationCodeableConcept>
+          <coding>
+              <system value="http://fhir.de/CodeSystem/bfarm/atc" />
+              <code value="ATCV03AB23" />
+              <display value="ORS" />
+          </coding>
+          <coding>
+              <system value="http://fhir.de/CodeSystem/ifa/pzn" />
+              <code value="PZN3AB24" />
+              <display value="Disprin" />
+          </coding>
+          <coding>
+              <system value="http://fhir.de/CodeSystem/abdata/wg14" />
+              <code value="WG143AB24" />
+              <display value="Paramcetamol" />
+          </coding>
+          <text value="Infusion bestehend aus 85mg Doxorubicin aufgeloest zur Verabreichung in 250ml 5-%iger (50 mg/ml) Glucose-Infusionsloesung" />
+      </medicationCodeableConcept>
+      <medicationReference>
+          <reference value="Medication/medicationReference" />
+      </medicationReference>
+      <supportingInformation>
+          <reference value="Encounter/1253658"/>
+          <code value="MedicationRequest" />
+          <display value="MedicationRequest" />
+      </supportingInformation>
+      <subject>
+          <reference value="Patient/50312536" />
+      </subject>
+      <encounter>
+          <reference value="Encounter/1129110"/>
+          <display value="encounter who leads to this prescription"/>
+          <Identifier>
+              <use value="official" />
+              <type value="MCN" />
+              <system value="http://mein-krankenhaus.example/fhir/sid/fallnummern" />
+              <value value="1129110" />
+              <period>
+                  <start value="2015-01-15"/>
+                  <end value="2015-01-20"/>
+              </period>
+              <assigner>
+                  <reference value="Encounter/Encounter" />
+              </assigner>
+          </Identifier>
+      </encounter>
+      <reportedBoolean value="true"/>
+      <requester>
+          <reference value="Practitioner/PractitionerWalterArzt" />
+          <Identifier>
+              <system value="http://fhir.de/sid/bundesaerztekammer/efn"/>
+              <value value="123456789123456" />
+          </Identifier>
+      </requester>
+      <performer>
+          <reference value="Practitioner/PractitionerWalterArzt-Performer" />
+      </performer>
+      <performerType>
+          <coding>
+              <system value="http://snomed.info/field/Concept.active"/>
+              <code value="inactive"/>
+              <display value="inactive"/>
+          </coding>
+      </performerType>
+      <recorder>
+          <reference value="PractitionerRole/BehandlungsDiagnoseFreitext" />
+      </recorder>
+      <reasonCode>
+          <coding>
+              <system value="http://snomed.info/id/116686009"/>
+              <code value="doctor"/>
+              <display value="reason-code"/>
+          </coding>
+      </reasonCode>
+      <reasonReference>
+          <reference value="Condition/BehandlungsDiagnoseFreitext" />
+      </reasonReference>
+      <reasonReference>
+          <reference value="Observation/Observation12" />
+      </reasonReference>
+      <insurance>
+          <reference value="Coverage/BehandlungsDiagnoseFreitext" />
+      </insurance>
+      <note>
+          <authorReference>
+              <reference value="Practitioner/AuthRef001" />
+          </authorReference>
+          <text value="this is authors note"/>
+          <time value="2024-06-03"/>">
+      </note>
+      <note>
+          <text value="this is authors note"/>
+          <time value="2024-06-03"/>">
+      </note>
+      <note>
+          <text value="this is authors note 2"/>
+      </note>
+      <dosageInstruction>
+          <sequence value='2147483647'/>
+          <text value="Primitive Type string" />
+          <additionalInstruction>
+              <Code value ="Take at BedTime" />
+              <text value="Take at bedtime1"/>
+          </additionalInstruction>
+          <patientInstruction value="Avoid Milk product" />
+          <timing>
+              <event value="9999-12-31"/>
+              <event value="2024-05-31"/>
+              <event value="2024-06-03"/>
+              <repeat>
+                  <boundsDuration>
+                      <value value="10.5"/>
+                      <unit value="drop"/>
+                      <system value="http://unitsofmeasure.org"/>
+                      <code value="Bound"/>
+                  </boundsDuration>
+                  <count value="1" />
+                  <countMax value="12" />
+                  <duration value="12.5" />
+                  <durationMax value="30.5" />
+                  <frequency value="935" />
+                  <frequencyMax value="1071" />
+                  <period value="5" />
+                  <periodMax value="366" />
+                  <when value="MORN" />
+                  <when value="NOON" />
+                  <when value="EVE" />
+                  <periodUnit value="d"/>
+                  <timeOfDay value="23:59:59" />
+                  <timeOfDay value="00:59:59" />
+                  <timeOfDay value="12:59:59" />
+              </repeat>
+              <code>
+                  <coding>
+                      <system value="http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation"/>
+                      <code value="Q8H"/>
+                      <display value="every 8 hours"/>
+                  </coding>
+                  <text value="time code text - 1"/>
+              </code>
+          </timing>
+          <asNeededBoolean value="true"/>
+          <site>
+              <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="26643006"/>
+                  <display value="Oral Route"/>
+              </coding>
+              <text value="Gosage of an site" />
+          </site>
+          <route>
+              <coding>
+                  <system value="http://snomed.info/id/118168003"/>
+                  <code value="118168003"/>
+                  <display value="Oral Route"/>
+              </coding>
+              <coding>
+                  <system value="http://standardterms.edqm.eu" />
+                  <code value="20003000" />
+                  <display value="Cutaneous use" />
+              </coding>
+              <text value="Route of an text" />
+          </route>
+          <method>
+              <coding>
+                  <system value="http://snomed.info/sct" />
+                  <code value="Units" />
+                  <display value="Units" />
+              </coding>
+          </method>
+          <doseAndRate>
+              <doseQuantity>
+                  <value value="12.5" />
+                  <unit value="Brausetablette" />
+                  <system value="http://unitsofmeasure.org" />
+                  <code value="mL"/>
+              </doseQuantity>
+              <rateRange>
+                  <low>
+                      <value value="2.5"/>
+                      <unit value="min"/>
+                      <system value="http://unitsofmeasure.org"/>
+                      <code value="min"/>
+                  </low>
+                  <high>
+                      <value value="5.6"/>
+                      <unit value="min"/>
+                      <system value="http://unitsofmeasure.org"/>
+                      <code value="min"/>
+                  </high>
+              </rateRange>
+          </doseAndRate>
+          <maxDosePerPeriod>
+              <numerator>
+                  <value value="400.50"/>
+                  <system value="http://hl7.org/fhir/StructureDefinition/Quantity"/>
+                  <code value="mg"/>
+              </numerator>
+              <denominator>
+                  <value value="500.25"/>
+                  <system value="http://hl7.org/fhir/StructureDefinition/Quantity"/>
+                  <code value="mL"/>
+              </denominator>
+          </maxDosePerPeriod>
+          <maxDosePerAdministration>
+              <value value="500.25"/>
+              <system value="http://unitsofmeasure.org"/>
+              <code value="mL"/>
+              <unit value="mL"/>
+          </maxDosePerAdministration>
+          <maxDosePerLifetime>
+              <system value="http://unitsofmeasure.org"/>
+              <unit value="mL"/>
+              <value value="25.3"/>
+              <code value="mL" />
+          </maxDosePerLifetime>
+      </dosageInstruction>
+      <dispenseRequest>
+          <validityPeriod>
+              <start value="2015-01-15"/>
+              <end value="2016-01-15"/>
+          </validityPeriod>
+          <numberOfRepeatsAllowed value="1"/>
+          <dispenseInterval>
+              <value value="6"/>
+              <unit value="hours"/>
+              <system value="http://unitsofmeasure.org"/>
+              <code value="hl7"/>
+          </dispenseInterval>
+          <quantity>
+              <value value="3.5"/>
+              <unit value="days"/>
+              <system value="http://unitsofmeasure.org"/>
+              <code value="d"/>
+          </quantity>
+          <expectedSupplyDuration>
+              <value value="3"/>
+              <unit value="days"/>
+              <system value="http://unitsofmeasure.org"/>
+              <code value="d"/>
+          </expectedSupplyDuration>
+          <performer>
+              <reference value="Organization/f001"/>
+          </performer>
+          <initialFill>
+              <quantity>
+                  <value value="1"/>
+                  <unit value="min"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="m"/>
+              </quantity>
+              <duration>
+                  <value value="3"/>
+                  <unit value="days"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+              </duration>
+          </initialFill>
+      </dispenseRequest>
+      <substitution>
+          <allowedCodeableConcept>
+              <coding>
+                  <system value="http://snomed.info/sct" />
+                  <code value="297217002" />
+                  <display value="Rib Pain (finding)" />
+              </coding>
+              <text value=" We are in Office" />
+          </allowedCodeableConcept>
+          <reason>
+              <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-ActReason"/>
+                  <code value="_ActAccommodationReason"/>
+                  <display value="Identifies the reason the patient is assigned to this accommodation type"/>
+              </coding>
+              <text value=" We are in Office 2" />
+          </reason>
+      </substitution>
+      <basedon>
+          <reference value=" MedicationRequest/1253658"/>
+          <code value="MedicationRequest" />
+          <display value="MedicationRequest" />
+      </basedon>
+      <groupIdentifier>
+          <use value="official"/>
+          <system value="http://www.bmc.nl/portal/prescriptions"/>
+          <value value="983939393"/>
+      </groupIdentifier>
+      <identifier>
+          <use value="official"/>
+          <system value="http://www.bmc.nl/portal/prescriptions"/>
+          <value value="12345689"/>
+      </identifier>
+      <detectedIssue>
+          <reference value="DetectedIssue/allergy"/>
+      </detectedIssue>
+      <eventHistory>
+          <reference value="#signature"/>
+          <display value="Author's Signature"/>
+      </eventHistory>
+      <PriorDescription>
+          <reference value="MedicationRequest/1253658"/>
+      </PriorDescription>
+      <courseOfTherapyType>
+          <coding>
+              <code value="continuous" />
+              <display value="Continuous long term therapy" />
+          </coding>
+          <coding>
+              <code value="acute" />
+              <display value="Short course (acute) therapy" />
+          </coding>
+          <coding>
+              <code value="seasonal" />
+              <display value="Seasonal" />
+          </coding>
+          <text value="Infusion bestehend aus 85mg Doxorubicin aufgeloest zur Verabreichung in 250ml 5-%iger (50 mg/ml) Glucose-Infusionsloesung" />
+      </courseOfTherapyType>
+      <instantiatesCanonical value="http://example.org/CodeSystem/abc"/>
+      <instantiatesCanonical value="http://terminology.hl7.org/CodeSystem/medicationrequest-category"/>
+      <instantiatesUri value="http://en.wikipedia.org/wiki/Uniform_resource_identifier"/>
+      <instantiatesUri value="http://google.com"/>
+  </MedicationRequest>
+}

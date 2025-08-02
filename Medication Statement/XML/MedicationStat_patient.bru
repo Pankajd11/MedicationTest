@@ -1,0 +1,28 @@
+meta {
+  name: MedicationStat_patient
+  type: http
+  seq: 13
+}
+
+get {
+  url: https://rd-vm01.rd.dtcs.local/iM1AS_QO999/api/v2/fhir/MedicationStatement?patient=patient/259149&_include=MedicationStatement:patient&enablelogging=true&page=2
+  body: none
+  auth: bearer
+}
+
+params:query {
+  patient: patient/259149
+  _include: MedicationStatement:patient
+  enablelogging: true
+  page: 2
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

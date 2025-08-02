@@ -1,0 +1,25 @@
+meta {
+  name: Medication_lot-number
+  type: http
+  seq: 6
+}
+
+get {
+  url: https://RD-VM27.rd.dtcs.local/iM1AS_ORAST1/api/v2/fhir/Medication?lot-number=9876543215265
+  body: none
+  auth: bearer
+}
+
+params:query {
+  lot-number: 9876543215265
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,29 @@
+meta {
+  name: MedicationStat_status
+  type: http
+  seq: 15
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationStatement?status=intended&_Include=MedicationStatement:medication&_Include=MedicationStatement:patient&enablelogging=true&disablepaging=true
+  body: none
+  auth: bearer
+}
+
+params:query {
+  status: intended
+  _Include: MedicationStatement:medication
+  _Include: MedicationStatement:patient
+  enablelogging: true
+  disablepaging: true
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,33 @@
+meta {
+  name: Authentication-Dont use
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://RD-VM28.rd.dtcs.local/iM1Auth_edbst1/token
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+  "Culture": "de-DE",
+  "HospitalUnit": "Ein1",
+  "OrgUnit": "ADMIN",
+  "Password": "isaplim",
+  "UserGroup": "SYSTEM",
+  "UserName": "system"
+  }
+}
+
+tests {
+  var jsonData = res.getBody();
+  var accesstoken = jsonData.data.clientAccessToken;
+  bru.setVar("token", accesstoken);
+}

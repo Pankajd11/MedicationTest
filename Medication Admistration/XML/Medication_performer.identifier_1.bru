@@ -1,0 +1,25 @@
+meta {
+  name: Medication_performer.identifier_1
+  type: http
+  seq: 17
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationAdministration?performer.identifier=http://fhir.de/sid/bundesaerztekammer/efn|271068700
+  body: none
+  auth: bearer
+}
+
+params:query {
+  performer.identifier: http://fhir.de/sid/bundesaerztekammer/efn|271068700
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

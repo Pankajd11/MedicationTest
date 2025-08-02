@@ -1,0 +1,26 @@
+meta {
+  name: MedicationStat_context
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationStatement?context=fallid/2617884&_include=MedicationStatement:medication
+  body: none
+  auth: bearer
+}
+
+params:query {
+  context: fallid/2617884
+  _include: MedicationStatement:medication
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

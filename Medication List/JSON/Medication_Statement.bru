@@ -1,0 +1,25 @@
+meta {
+  name: Medication_Statement
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/List?item=MedicationStatement/MedicationStatement1
+  body: none
+  auth: bearer
+}
+
+params:query {
+  item: MedicationStatement/MedicationStatement1
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

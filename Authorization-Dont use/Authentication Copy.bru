@@ -1,0 +1,23 @@
+meta {
+  name: Authentication Copy
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://rd-vm01.rd.dtcs.local/iM1Auth_QO999/token
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/xml
+  Content-Type: application/x-www-form-urlencoded
+  grant_type: client_credentials
+}
+
+tests {
+  var jsonData = res.getBody();
+  var accesstoken = jsonData.data.clientAccessToken;
+  bru.setVar("token", accesstoken);
+}

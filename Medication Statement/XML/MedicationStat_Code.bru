@@ -1,0 +1,36 @@
+meta {
+  name: MedicationStat_Code
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationStatement?code=http://fhir.de/CodeSystem/bfarm/atc|V07AB01
+  body: none
+  auth: bearer
+}
+
+params:query {
+  code: http://fhir.de/CodeSystem/bfarm/atc|V07AB01
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  //*************************************************************
+  
+  test("Content verification", function () {
+      expect(JSON.stringify(res.getBody())).to.include("2021-07-01");
+  });
+  
+  
+  //************************************************************
+}

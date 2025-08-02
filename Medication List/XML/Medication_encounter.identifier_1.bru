@@ -1,0 +1,25 @@
+meta {
+  name: Medication_encounter.identifier_1
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/List?encounter.identifier=999
+  body: none
+  auth: bearer
+}
+
+params:query {
+  encounter.identifier: 999
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Medication_lot-number
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/Medication?lot-number=987654321
+  body: none
+  auth: bearer
+}
+
+params:query {
+  lot-number: 987654321
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  Accept: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}

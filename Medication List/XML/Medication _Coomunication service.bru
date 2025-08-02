@@ -1,0 +1,66 @@
+meta {
+  name: Medication _Coomunication service
+  type: http
+  seq: 16
+}
+
+post {
+  url: https://rd-vm01.rd.dtcs.local/iM1AS_QO999/api/v2/fhir/List
+  body: xml
+  auth: bearer
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:xml {
+  <List xmlns="http://hl7.org/fhir">
+  <meta>
+  <profile value="https://gematik.de/fhir/isik/v2/Medikation/StructureDefinition/ISiKMedikationsListe" />
+  </meta>
+  <status value="current" />
+  <mode value="working" />
+  <title value="testtitle"/>
+  <identifier>
+  <value value ="medicationReq12345567779999"/>
+  </identifier>
+  <code>
+  <coding>
+  <system value="http://terminology.hl7.org/CodeSystem/list-example-use-codes" />
+  <code value="medications" />
+  </coding>
+  </code>
+  <subject>
+  <reference value="Patient/258425" />
+  <identifier>
+  <value value="5150225"/>
+  <system value="http://mein-krankenhaus.example/fhir/sid/patienten" />
+  </identifier>
+  </subject>
+  <encounter>
+  <reference value="Encounter/Versorgungsstellenkontakt" />
+  </encounter>
+  <date value="2021-07-04" /> <!--LISTDATE-->
+  <entry>
+  <item>
+  <reference value="MedicationStatement/ExampleISiKMedikationsInformation1" />
+  </item>
+  <deleted value='true'/>
+  <date value="2021-07-02"/>
+  </entry>
+  <entry>
+  <deleted value='false'/>
+  <date value="2021-07-04" />
+  <item>
+  <reference value="MedicationStatement/ExampleISiKMedikationsInformation2" />
+  </item>
+  </entry>
+  </List>
+}

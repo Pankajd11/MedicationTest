@@ -1,0 +1,150 @@
+meta {
+  name: SaveMedication JSON Copy
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{im1asurl}}api/v3/fhir/Medication&enablelogging=true&disablepaging=true
+  body: json
+  auth: bearer
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  Accept: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "code": {
+      "coding": [
+        {
+          "system": "http://fhir.de/CodeSystem/bfarm/atc",
+          "code": "ATCV03AB2312",
+          "display": "Json-ORS"
+        },
+        {
+          "system": "http://fhir.de/CodeSystem/ifa/pzn",
+          "code": "PZN3AB2412",
+          "display": "Disprin"
+        },
+        {
+          "system": "http://fhir.de/CodeSystem/abdata/wg14",
+          "code": "WG143AB2412",
+          "display": "Paramcetamol"
+        }
+      ],
+      "text": "Infusion bestehend aus 85mg Doxorubicin aufgeloest zur Verabreichung in 250ml 5-%iger (50 mg/ml) Glucose-Infusionsloesung"
+    },
+    "status": {
+      "value": "inactive",
+      "valueSpecified": true
+    },
+    "form": {
+      "coding": [
+        {
+          "system": "http://standardterms.edqm.eu",
+          "code": "11210000",
+          "display": "Solution for infusion"
+        },
+        {
+          "system": "http://standardterms.edqm.eu",
+          "code": "11210440",
+          "display": "Tablet for headache"
+        }
+      ],
+      "text": "this is text of form-text, the medicine should be taken orally"
+    },
+    "amount": {
+      "numerator": {
+        "value": "150.0",
+        "unit": "rs",
+        "system": "http://unitsofmeasure.org",
+        "code": "rs"
+      },
+      "denominator": {
+        "value": "250.0",
+        "unit": "Milliliter",
+        "system": "http://unitsofmeasure.org",
+        "code": "mL"
+      }
+    },
+    "ingredient": [
+      {
+        "itemCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.de/CodeSystem/bfarm/atc",
+                    "code": "L01XX02",
+                    "display": "L-Asparaginase aus Erwinia chrysanthemi [Erwinase], parenteral"
+                  },
+                  {
+                    "system": "http://fhir.de/CodeSystem/abdata/wg14",
+                    "code": "HI_CMV",
+                    "display": "Transfusion von Plasma und Plasmabestandteilen und gentechnisch hergestellten Plasmaproteinen: Human-Immunglobulin, spezifisch gegen Zytomeglie-Virus"
+                  },
+                  {
+                    "system": "http://fhir.de/CodeSystem/ifa/pzn",
+                    "code": "3754679",
+                    "display": "BELOC ZOK "
+                  },
+                  {
+                    "system": "http://fhir.de/CodeSystem/ask",
+                    "code": "375467912",
+                    "display": "BELOC ZOK ask code"
+                  }
+                ],
+                "text": "Ingredient text"
+              },
+        "isActive": "true",
+        "strength": {
+          "numerator": {
+            "value": "85.0",
+            "unit": "mg",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg"
+          },
+          "denominator": {
+            "value": "250.0",
+            "unit": "Milliliter",
+            "system": "http://unitsofmeasure.org",
+            "code": "mL"
+          }
+        },
+        "extension": [
+          {
+            "valueCoding": {
+              "system": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/CodeSystem/wirkstofftyp",
+              "code": "IN"
+            },
+            "url": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/CodeSystem/wirkstofftyp"
+          }
+        ]
+      },
+      {
+              "itemReference": {
+                "reference": "Medication/7f27cb8d-940b-43fd-ab8b-fee5b7a9b060"
+      },
+      {
+        "isActive": "true"
+      }
+    ],
+    "batch": {
+      "lotNumber": "987654321",
+      "expirationDate": "1964-08-12T00:00:00"
+    },
+    "resourceType": "Medication",
+    "meta": {
+      "lastUpdated": "2024-03-12T15:40:55.404+01:00",
+      "profile": [
+        "https://gematik.de/fhir/isik/v2/Medikation/StructureDefinition/ISiKMedikament"
+      ]
+    }
+  }
+}

@@ -1,0 +1,556 @@
+meta {
+  name: SaveMedication JSON Max data Copy 2
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{im1asurl}}api/v2/fhir/MedicationRequest/757
+  body: json
+  auth: none
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json; charset=utf-8
+  content: application/fhir+json
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+      "instantiatesCanonical": [
+          "http://example.org/CodeSystem/abc",
+          "http://terminology.hl7.org/CodeSystem/medicationrequest-category"
+      ],
+      "instantiatesUri": [
+          "http://en.wikipedia.org/wiki/Uniform_resource_identifier",
+          "http://google.com"
+      ],
+      "supportingInformation": [
+          {
+              "reference": "Encounter/123456"
+          },
+          {
+              "reference": "Patient/123456"
+          }
+      ],
+      "asNeededCodeableConcept": {
+          "coding": [
+              {
+                  "system": "http://snomed.info/sct",
+                  "code": "203082005",
+                  "display": "Fibromyalgia (disorder)"
+              }
+          ]
+      },
+      "note": [
+          {
+              "authorReference": {
+                  "reference": "Practitioner/AuthRef001"
+              },
+              "text": "this is authors note"
+          },
+          {
+              "text": "this is authors note"
+          },
+          {
+              "text": "this is authors note 2"
+          }
+      ],
+      "medicationReference": {
+          "reference": "Medication/320"
+      },
+      "identifier": [
+          {
+              "use": "official",
+              "system": "http://www.bmc.nl/portal/prescriptions",
+              "value": "12345689"
+          }
+      ],
+       "status": "on-hold",
+      "statusReason": {
+          "coding": [
+              {
+                  "system": "http://terminology.hl7.org/CodeSystem/medicationrequest-status-reason",
+                  "code": "salg",
+                  "display": "The patient is believed to be allergic to a substance that is part of the therapy and the therapy is being temporarily withdrawn to confirm."
+              }
+          ],
+          "text": "The drug is contraindicated for patients receiving surgery and the patient is scheduled to be admitted for surgery in the near future. The drug will be resumed when the patient has sufficiently recovered from the surgery."
+      },
+      "intent": "option",
+      "category": [
+          {
+              "coding": [
+                  {
+                      "system": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
+                      "code": "outpatient",
+                      "display": "Outpatient"
+                  },
+                  {
+                      "system": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
+                      "code": "discharge",
+                      "display": "Discharge"
+                  },
+                  {
+                      "system": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
+                      "code": "inpatient",
+                      "display": "Inpatient"
+                  },
+                  {
+                      "system": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
+                      "code": "community",
+                      "display": "Community"
+                  }
+              ],
+              "text": "Category text"
+          },
+          {
+              "coding": [
+                  {
+                      "system": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
+                      "code": "outpatient",
+                      "display": "Outpatient-2"
+                  },
+                  {
+                      "system": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
+                      "code": "discharge",
+                      "display": "Discharge-2"
+                  }
+              ],
+              "text": "Category-2 text"
+          }
+      ],
+      "priority": "urgent",
+      "doNotPerformBoolean":"true",
+      "reportedBoolean": "true",
+      "medicationCodeableConcept": {
+          "coding": [
+              {
+                  "system": "http://fhir.de/CodeSystem/bfarm/atc",
+                  "code": "ATCV03AB23",
+                  "display": "ORS"
+              },
+              {
+                  "system": "http://fhir.de/CodeSystem/ifa/pzn",
+                  "code": "PZN3AB24",
+                  "display": "Disprin"
+              },
+              {
+                  "system": "http://fhir.de/CodeSystem/abdata/wg14",
+                  "code": "WG143AB24",
+                  "display": "Paramcetamol"
+              }
+          ],
+          "text": "Infusion bestehend aus 85mg Doxorubicin aufgeloest zur Verabreichung in 250ml 5-%iger (50 mg/ml) Glucose-Infusionsloesung"
+      },
+      "subject": {
+          "reference": "Patient/PatientinMusterfrau",
+          "identifier": {
+              "value": "456"
+          },
+          "display": "Pat"
+      },
+      "encounter": {
+          "reference": "Encounter/123456",
+          "identifier": {
+              "value": "9898898"
+          },
+          "display": "Encounter of the patient"
+      },
+      "authoredOn": "2021-07-01",
+      "requester": {
+          "reference": "Practitioner/PractitionerWalterArzt",
+          "identifier": {
+              "value": "963"
+          },
+          "display": "Prac"
+      },
+      "encounter": {
+          "reference": "Encounter/Versorgungsstellenkontakt"
+      },
+      "performer": {
+          "reference": "Practitioner/PractitionerWalterArzt-Performer",
+          "identifier": {
+              "value": "852"
+          },
+          "display": "Per"
+      },
+      "performerType": {
+          "coding": [
+              {
+                  "system": "http://snomed.info/id/116686009",
+                  "code": "doctor",
+                  "display": "Doctor"
+              },
+              {
+                  "system": "http://snomed.info/id/116686003",
+                  "code": "doctor",
+                  "display": "Doctor"
+              }
+          ],
+          "text": "performer-type text"
+      },
+      "recorder": {
+          "reference": "PractitionerRole/BehandlungsDiagnoseFreitext",
+          "identifier": {
+              "value": "741"
+          },
+          "display": "Rec"
+      },
+      "reasonCode": [
+          {
+              "coding": [
+                  {
+                      "system": "http://snomed.info/id/116686009",
+                      "code": "doctor",
+                      "display": "reason-code-3"
+                  },
+                  {
+                      "system": "http://snomed.info/id/116686010",
+                      "code": "doctor",
+                      "display": "reason-code-2"
+                  }
+              ],
+              "text": "first reasonCode text value"
+          },
+          {
+              "coding": [
+                  {
+                      "system": "http://snomed.info/id/116686009",
+                      "code": "doctor",
+                      "display": "reason-code-3"
+                  },
+                  {
+                      "system": "http://snomed.info/id/116686010",
+                      "code": "doctor",
+                      "display": "reason-code-2"
+                  }
+              ],
+              "text": "second reasonCode text value"
+          }
+      ],
+      "reasonReference": [
+          {
+              "reference": "Condition/BehandlungsDiagnoseFreitext",
+              "identifier": {
+                  "value": "369"
+              },
+              "display": "Con"
+          }
+      ],
+      "groupIdentifier": {
+          "use": "official",
+          "value": "983939393"
+      },
+      "courseOfTherapyType": {
+          "coding": [
+              {
+                  "system": "http://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy",
+                  "code": "continuous",
+                  "display": "Continuous long term therapy"
+              },
+              {
+                  "system": "http://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy",
+                  "code": "acute",
+                  "display": "Short course (acute) therapy"
+              }
+          ],
+          "text": "courseOfTherapyType text value"
+      },
+      "insurance": [
+          {
+              "reference": "Coverage/BehandlungsDiagnoseFreitext",
+              "identifier": {
+                  "value": "258"
+              },
+              "display": "Cov"
+          }
+      ],
+      "dosageInstruction": [
+          {
+              "sequence": 1,
+              "text": "Dopamine 4mcg/kg/min",
+              "additionalInstruction": [
+                  {
+                      "coding": [
+                          {
+                              "system": "http://snomed.info/sct",
+                              "code": "6064005",
+                              "display": "Topical Route"
+                          },
+                          {
+                              "system": "http://snomed.info/sct",
+                              "code": "118168003",
+                              "display": "Specimen source morphology"
+                          }
+                      ],
+                      "text": "additional instruction text"
+                  },
+                  {
+                      "coding": [
+                          {
+                              "system": "http://snomed.info/sct",
+                              "code": "6064006",
+                              "display": "Topical Route"
+                          },
+                          {
+                              "system": "http://snomed.info/sct",
+                              "code": "1181680066",
+                              "display": "Specimen source morphology"
+                          }
+                      ],
+                      "text": "additional second instruction text"
+                  }
+              ],
+              "patientInstruction": "patient instruction do not feed me!",
+              "timing": {
+                  "repeat": {
+                      "boundsRange": {
+                          "low": {
+                              "value": "1.0",
+                              "unit": "Brausetablette",
+                              "system": "http://unitsofmeasure.org",
+                              "code": "1"
+                          },
+                          "high": {
+                              "value": "2.0",
+                              "unit": "Brausetablette",
+                              "system": "http://unitsofmeasure.org",
+                              "code": "2"
+                          }
+                      },
+                      "count": "0",
+                      "countMax": "0",
+                      "duration": "0.0",
+                      "durationMax": "0.0",
+                      "frequency": "0",
+                      "frequencyMax": "0",
+                      "period": "0.0",
+                      "periodMax": "0.0",
+                      "when": [
+                          "MORN",
+                          "NOON",
+                          "EVE"
+                      ]
+                  },
+                  "code": {
+                      "coding": [
+                          {
+                              "system": "http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation",
+                              "code": "BID",
+                              "display": "BID"
+                          },
+                          {
+                              "system": "http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation",
+                              "code": "BID",
+                              "display": "BID-2"
+                          }
+                      ],
+                      "text": "time code text - 1"
+                  }
+              },
+              "asNeededBoolean": "true",
+              "site": {
+                  "coding": [
+                      {
+                          "system": "http://snomed.info/sct",
+                          "code": "29721302",
+                          "display": "Stomach left-side (finding)"
+                      },
+                      {
+                          "system": "http://snomed.info/sct",
+                          "code": "297213033",
+                          "display": "Stomach middle (finding)"
+                      }
+                  ],
+                  "text": "site of the finding"
+              },
+              "route": {
+                  "coding": [
+                      {
+                          "system": "http://standardterms.edqm.eu",
+                          "code": "29721302",
+                          "display": "Mouth (finding)"
+                      },
+                      {
+                          "system": "http://snomed.info/sct",
+                          "code": "297213033",
+                          "display": "Oral"
+                      }
+                  ],
+                  "text": "site of the finding"
+              },
+              "method": {
+                  "coding": [
+                      {
+                          "system": "http://snomed.info/sct",
+                          "code": "2323232",
+                          "display": "Method of the route"
+                      },
+                      {
+                          "system": "http://snomed.info/sct",
+                          "code": "2323232",
+                          "display": "Method of the route"
+                      }
+                  ],
+                  "text": "method text"
+              },
+              "doseAndRate": [
+                  {
+                      "type": {
+                          "coding": [
+                              {
+                                  "system": "http://snomed.info/sct",
+                                  "code": "2323332",
+                                  "display": "dose and rate-type"
+                              },
+                              {
+                                  "system": "http://snomed.info/sct",
+                                  "code": "2323332",
+                                  "display": "dose and rate-type"
+                              }
+                          ],
+                          "text": "type text value"
+                      },
+                      "doseQuantity": {
+                          "value": "1.0",
+                          "unit": "Brausetablette",
+                          "system": "http://unitsofmeasure.org",
+                          "code": "1"
+                      },
+                      "rateQuantity": {
+                          "value": "3.0",
+                          "unit": "Rate-Quantity",
+                          "system": "http://unitsofmeasure.org",
+                          "code": "1"
+                      }
+                  }
+              ],
+              "maxDosePerPeriod": {
+                  "numerator": {
+                      "value": "150.0",
+                      "unit": "rs",
+                      "system": "http://unitsofmeasure.org",
+                      "code": "rs"
+                  },
+                  "denominator": {
+                      "value": "250.0",
+                      "unit": "Milliliter",
+                      "system": "http://unitsofmeasure.org",
+                      "code": "mL"
+                  }
+              },
+              "maxDosePerAdministration": {
+                  "value": "22.0",
+                  "unit": "Quantity",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "4"
+              },
+              "maxDosePerLifetime": {
+                  "value": "25.3",
+                  "unit": "mL",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mL"
+              }
+          }
+      ],
+      "dispenseRequest": {
+          "initialFill": {
+              "quantity": {
+                  "value": "1.0",
+                  "unit": "min",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "m"
+              },
+              "duration": {
+                  "value": "0"
+              }
+          },
+          "dispenseInterval": {
+              "value": "0"
+          },
+          "validityPeriod": {
+              "start": "2015-01-15",
+              "end": "2016-01-15"
+          },
+          "numberOfRepeatsAllowed": "1",
+          "quantity": {
+              "value": "3.0",
+              "unit": "days",
+              "system": "http://unitsofmeasure.org",
+              "code": "d"
+          },
+          "expectedSupplyDuration": {
+              "value": "0"
+          },
+          "performer": {
+              "reference": "Organization/f001",
+              "identifier": {
+                  "value": "4685"
+              },
+              "display": "Org"
+          }
+      },
+      "substitution": {
+          "allowedBoolean": "false"
+      },
+      "priorPrescription": {
+          "reference": "Prescription/f001",
+          "identifier": {
+              "value": "4685"
+          },
+          "display": "pp"
+      },
+      "detectedIssue": [
+          {
+              "reference": "Detected/f001",
+              "identifier": {
+                  "value": "4685"
+              },
+              "display": "Dt"
+          }
+      ],
+      "eventHistory": [
+          {
+              "reference": "Event/f001",
+              "identifier": {
+                  "value": "4685"
+              },
+              "display": "Evt Test display change"
+          }
+      ],
+      "resourceType": "MedicationRequest",
+      "id": "757",
+      "meta": {
+          "lastUpdated": "2024-04-22T11:11:25.987+05:30",
+          "profile": [
+              "https://gematik.de/fhir/isik/v2/Medikation/StructureDefinition/ISiKMedikationsVerordnung"
+          ]
+      }
+  }
+}
+
+tests {
+  test("To check API Status",function(){
+      expect(res.getStatus()).to.equal(201)
+  });
+  
+  var tv4 = require('tv4');
+  var responseBody = JSON.stringify(res.getBody());
+  
+  
+  // Extract the JSON Schema from the environment or collection
+  var jsonSchema = bru.getVar("schemaMddication");
+  console.log(jsonSchema)
+  //var result = tv4.validate(responseBody, jsonSchema);
+  var responseBody = xml2Json(responseBody);
+  var result = tv4.validate(responseBody, jsonSchema);
+  
+  // Check if validation passed
+  test("Verifying Schema validation", function () {
+      expect(result).to.be.true;
+  });
+  
+}

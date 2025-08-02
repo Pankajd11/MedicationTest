@@ -1,0 +1,49 @@
+meta {
+  name: SaveMedicationAdmintration Min set of Data
+  type: http
+  seq: 22
+}
+
+post {
+  url: https://rd-vm76.rd.dtcs.local/iM1AS_QO828/api/v2/fhir/MedicationAdministration
+  body: xml
+  auth: bearer
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/xml
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:xml {
+  <?xml version="1.0" encoding="utf-8"?>
+  <MedicationAdministration xmlns="http://hl7.org/fhir">
+      <id value="270"/>
+      <meta>
+          <profile value="https://gematik.de/fhir/isik/v2/Medikation/StructureDefinition/ISiKMedikationsVerabreichung"/>
+      </meta>
+      <subject>
+          <reference value="Patient/ÜüÚÛâý" />
+      </subject>
+      <status value="entered-in-error"/>
+      <effectivePeriod>
+          <start value="2015-01-15T14:30:00+01:00"/>
+          <end value="2015-01-15T14:30:00+01:00"/>
+      </effectivePeriod>
+      <medicationReference>
+          <reference value="Medication/medicationReference" />
+      </medicationReference>
+      <note>
+          <authorString value="Note that FHIR strings SHALL NOT exceed 1MB in size"/>
+          <time value="2015-01-15T14:30:00+01:00"/>
+          <text value="this is authors note"/>
+      </note>
+      <note>
+          <text value="this is authors noteüÜñìÜáâäåæøâ"/>
+      </note>
+  </MedicationAdministration>
+}

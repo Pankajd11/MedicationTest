@@ -1,0 +1,25 @@
+meta {
+  name: Medication_encounter
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/List?encounter=Encounter/Versorgungsstellenkontakt
+  body: none
+  auth: bearer
+}
+
+params:query {
+  encounter: Encounter/Versorgungsstellenkontakt
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,25 @@
+meta {
+  name: MedicationStat_part-of
+  type: http
+  seq: 12
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationStatement?part-of=MedicationStatement/8492
+  body: none
+  auth: bearer
+}
+
+params:query {
+  part-of: MedicationStatement/8492
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

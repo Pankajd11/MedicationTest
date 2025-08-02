@@ -1,0 +1,25 @@
+meta {
+  name: Medication_ingredient-code
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/Medication?ingredient-code=http://fhir.de/CodeSystem/bfarm/atc|L01DB01
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ingredient-code: http://fhir.de/CodeSystem/bfarm/atc|L01DB01
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  Accept: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}

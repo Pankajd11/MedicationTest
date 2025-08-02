@@ -1,0 +1,50 @@
+meta {
+  name: Medication_ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/Medication?_id=305
+  body: none
+  auth: bearer
+}
+
+params:query {
+  _id: 305
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  Accept: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("To check API Status",function(){
+      expect(res.getStatus()).to.equal(200)
+  });
+  
+  const response=res.getBody();
+  console.log("abcd " +response.entry[0].resource.meta.profile)
+  try{
+  //const response=res.getBody();
+  //var convert = require('xml-js');
+  ///var result = convert.xml2json(response, {compact: true, spaces: 4});
+  //result=JSON.parse(result);
+   
+  test ("To check the any value",function()
+        {
+    expect (response.entry[0].resource.meta.profile[0]).to.equal("https://gematik.de/fhir/isik/v2/Medikation/StructureDefinition/ISiKMedikament");
+    
+    })
+  }
+   catch(e){
+        console.log("saveApiResponse Exception occured"+e)
+       
+    }
+}

@@ -1,0 +1,78 @@
+meta {
+  name: MedicationStat_ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationStatement?_id=708&_include=MedicationStatement:medication&enablelogging=true&disablepaging=true
+  body: none
+  auth: bearer
+}
+
+params:query {
+  _id: 708
+  _include: MedicationStatement:medication
+  enablelogging: true
+  disablepaging: true
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  Accept: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("To check API Status",function(){
+      expect(res.getStatus()).to.equal(200)
+  });
+  
+  //***********************************************************************
+  
+  var responseBody = JSON.stringify(res.getBody());
+  var jsonData = xml2Json(responseBody);
+  
+  test("Profile URL Validation", function () {
+      // Check if specific XML element exists
+      console.log(jsonData)
+      console.log("pankaj"+jsonData["Bundle"]["entry"]["resource"]["MedicationRequest"]["meta"]["profile"]["$"]["value"])
+      // Check if element has expected value
+      expect(jsonData["Bundle"]["entry"]["resource"]["MedicationRequest"]["meta"]["profile"]["$"]["value"]).to.eql("https://gematik.de/fhir/isik/v2/Medikation/StructureDefinition/ISiKMedikationsVerordnung")        
+      // Add more assertions as needed
+  });
+  
+  //*************************************************************
+  test("Content verification", function () {
+      expect(JSON.stringify(res.getBody())).to.include("531");
+  });
+  //************************************************************
+  
+  //test("Body matches string", function ()
+  //{
+      //var Expectedbody = bru.getVar("BodyVerfication");
+     // console.log(Expectedbody)
+     //expect(res.getBody()).to.equal(Expectedbody);
+  //});
+  
+  ///**************************************************************
+  
+  var tv4 = require('tv4');
+  
+  // Extract the JSON Schema from the environment or collection
+  var jsonSchema = bru.getVar("schemavalidateMRequest");
+  //console.log(jsonSchema)
+  var result = tv4.validate(responseBody, jsonSchema);
+  
+  
+  // Check if validation passed
+  test("Verifying Schema validation", function () {
+      expect(result).to.be.true;
+  });
+  
+  
+}

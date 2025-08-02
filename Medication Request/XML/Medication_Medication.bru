@@ -1,0 +1,27 @@
+meta {
+  name: Medication_Medication
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationRequest?medication=Medication/360&_include=MedicationRequest:medication&enablelogging=true
+  body: none
+  auth: bearer
+}
+
+params:query {
+  medication: Medication/360
+  _include: MedicationRequest:medication
+  enablelogging: true
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,111 @@
+meta {
+  name: SaveMedication Copy
+  type: http
+  seq: 17
+}
+
+post {
+  url: https://rd-vm01.rd.dtcs.local/iM1AS_QO999/api/v2/fhir/List
+  body: xml
+  auth: bearer
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/xml
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:xml {
+  <List xmlns="http://hl7.org/fhir">
+      <meta>
+          <profile value="https://gematik.de/fhir/isik/v2/Medikation/StructureDefinition/ISiKMedikationsListe" />
+      </meta>
+      <status value="entered-in-error" />
+      <mode value="changes" />
+      <title valie="Integration Testing for List" />
+      <code>
+          <coding>
+              <system value="http://terminology.hl7.org/CodeSystem/list-example-use-codes" />
+              <code value="medications" />
+              <display Value="Sorted by Item Date"/>
+          </coding>
+          <text value="Integration Testing for List"/>
+      </code>
+      <subject>
+          <reference value="Patient/258425" />
+          <identifier>
+              <value value="5150225"/>
+              <system value="http://mein-krankenhaus.example/fhir/sid/patienten" />
+          </identifier>
+      </subject>
+      <encounter>
+          <reference value="Encounter/Versorgungsstellenkontakt" />
+      </encounter>
+      <source>
+          <reference value="Practitioner/ABCD" />
+      </source>
+      <OrderedBy>
+          <coding>
+              <system value="http://hl7.org/fhir/StructureDefinition/uri" />
+              <code value="entry-date" />
+              <display Value="Sorted by Item Date"/>
+          </coding>
+          <text value="Integration Testing for List-OrderedBy"/>
+      </OrderedBy>
+      <note>
+          <authorReference>
+              <reference value="Practitioner/AuthRef001"/>
+              <identifier>
+                  <value value="AuthRef001"/>
+              </identifier>
+              <display value="Practitioner"/>
+          </authorReference>
+          <text value="this is authors note"/>
+      </note>
+      <entry>
+          <flag>
+              <coding>
+                  <system value="http://hl7.org/fhir/StructureDefinition/uri" />
+                  <code value="09" />
+                  <display Value="Prescribed"/>
+              </coding>
+              <text value="Integration Testing for List-flag"/>
+          </flag>
+          <deleted value="true"/>
+          <item>
+              <reference value="MedicationStatement/ExampleISiKMedikationsInformation1" />
+          </item>
+      </entry>
+      <entry>
+          <item>
+              <reference value="MedicationStatement/ExampleISiKMedikationsInformation2" />
+          </item>
+      </entry>
+      <entry>
+          <flag>
+              <coding>
+                  <system value="http://hl7.org/fhir/StructureDefinition/uri" />
+                  <code value="05" />
+                  <display Value="Ceased"/>
+              </coding>
+              <text value="Integration Testing for List-flag"/>
+          </flag>
+          <deleted value="False"/>
+          <item>
+              <reference value="MedicationStatement/ExampleISiKMedikationsInformation2" />
+          </item>
+      </entry>
+      <emptyReason>
+          <coding>
+              <system value="http://hl7.org/fhir/StructureDefinition/uri" />
+              <code value="Test" />
+              <display Value="Information Nil Unknown"/>
+          </coding>
+          <text value="Integration Testing for List-emptyReason"/>
+      </emptyReason>
+  </List>
+}

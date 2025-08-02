@@ -1,0 +1,25 @@
+meta {
+  name: Medication_status
+  type: http
+  seq: 13
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/List?status=retired
+  body: none
+  auth: bearer
+}
+
+params:query {
+  status: retired
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

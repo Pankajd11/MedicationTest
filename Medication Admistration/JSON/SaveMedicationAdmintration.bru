@@ -1,0 +1,300 @@
+meta {
+  name: SaveMedicationAdmintration
+  type: http
+  seq: 21
+}
+
+post {
+  url: https://RD-VM27.rd.dtcs.local/iM1AS_ORAST1/api/v2/fhir/MedicationAdministration
+  body: xml
+  auth: bearer
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/xml
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:xml {
+  <?xml version="1.0" encoding="utf-8"?>
+  <MedicationAdministration xmlns="http://hl7.org/fhir">
+      <meta>
+          <profile value="https://gematik.de/fhir/isik/v2/Medikation/StructureDefinition/ISiKMedikationsVerabreichung"/>
+      </meta>
+      <instantiates value="http://google.com"/>
+      <instantiates value="http://DTCS.com"/>
+      <partOf>
+          <reference value="MedicationAdministration/MedicationAdministration01" />
+          <identifier>
+              <value value="MedicationAdministration01" />
+          </identifier>
+          <display value="MedicationAdministration01 partOf reference" />
+      </partOf>
+      <partOf>
+          <reference value="Procedure/Procedure01" />
+          <identifier>
+              <value value="Procedure01" />
+          </identifier>
+          <display value="Procedure01 partOf reference" />
+      </partOf>
+      <status value="in-progress"/>
+      <statusReason>
+          <coding>
+              <system value="http://snomed.info/sct" />
+              <code value="42752001" />
+              <display value="Due to" />
+          </coding>
+          <coding>
+              <system value="http://snomed.info/sct" />
+              <code value="118169006" />
+              <display value="Specimen source topography" />
+          </coding>
+          <text value="Status-reason text" />
+      </statusReason>
+      <statusReason>
+          <coding>
+              <system value="http://snomed.info/sct" />
+              <code value="42752001" />
+              <display value="Due to - number 2" />
+          </coding>
+          <coding>
+              <system value="http://snomed.info/sct" />
+              <code value="118169006" />
+              <display value="Specimen source topography" />
+          </coding>
+          <text value="Status-reason text --- number 2" />
+      </statusReason>
+      <category>
+          <coding>
+              <system value="http://terminology.hl7.org/CodeSystem/medicationrequest-category" />
+              <code value="outpatient" />
+              <display value="Outpatient-2" />
+          </coding>
+          <coding>
+              <system value="http://terminology.hl7.org/CodeSystem/medicationrequest-category" />
+              <code value="discharge" />
+              <display value="Discharge-2" />
+          </coding>
+          <text value="Category-2 text" />
+      </category>
+      <subject>
+          <reference value="Patient/259195" />
+          <identifier>
+              <value value="5150796"/>
+              <system value="http://mein-krankenhaus.example/fhir/sid/patienten" />
+          </identifier>
+          <display value="Patient Subject reference"/>
+      </subject>
+      <context>
+          <reference value="Encounter/1129227"/>
+          <Identifier>
+              <value value="4417592" />
+              <system value="http://iMedOne.de/fhir/v1/identifiers/i1FallNummer" />
+          </Identifier>
+          <display value="EncounterContext01 context" />
+      </context>
+      <supportingInformation>
+          <reference value="Organization/PatientinMusterfrau"/>
+          <identifier>
+              <value value="652358"/>
+          </identifier>
+          <display value="Org"/>
+      </supportingInformation>
+      <effectivePeriod>
+          <start value="2015-01-15"/>
+          <end value="2015-01-20"/>
+      </effectivePeriod>
+      <effectivePeriod>
+          <start value="1993-07-26"/>
+      </effectivePeriod>
+      <performer>
+          <actor>
+              <reference value="PractitionerRole/KasseRoos" />
+              <identifier>
+                  <value value="333456789123456" />
+                  <system value="http://fhir.de/sid/bundesaerztekammer/efn" />
+              </identifier>
+              <display value="PractionerDisplay" />
+          </actor>
+      </performer>
+      <reasonCode>
+          <coding>
+              <system value="http://snomed.info/id/116686009" />
+              <code value="doctor" />
+              <display value="reason-code-3" />
+          </coding>
+          <coding>
+              <system value="http://snomed.info/id/116686010" />
+              <code value="doctor" />
+              <display value="reason-code-2" />
+          </coding>
+          <text value="first reasonCode text value" />
+      </reasonCode>
+      <reasonCode>
+          <coding>
+              <system value="http://snomed.info/id/116686009" />
+              <code value="doctor" />
+              <display value="reason-code-3" />
+          </coding>
+          <coding>
+              <system value="http://snomed.info/id/116686010" />
+              <code value="doctor" />
+              <display value="reason-code-2" />
+          </coding>
+          <text value="second reasonCode text value" />
+      </reasonCode>
+      <medicationCodeableConcept>
+          <coding>
+              <system value="http://fhir.de/CodeSystem/bfarm/atc" />
+              <code value="ATCV03AB23" />
+              <display value="ORS" />
+          </coding>
+          <coding>
+              <system value="http://fhir.de/CodeSystem/ifa/pzn" />
+              <code value="PZN3AB24" />
+              <display value="Disprin" />
+          </coding>
+          <coding>
+              <system value="http://fhir.de/CodeSystem/abdata/wg14" />
+              <code value="WG143AB24" />
+              <display value="Paramcetamol" />
+          </coding>
+          <text value="Infusion bestehend aus 85mg Doxorubicin aufgeloest zur Verabreichung in 250ml 5-%iger (50 mg/ml) Glucose-Infusionsloesung" />
+      </medicationCodeableConcept>
+      <medicationReference>
+          <reference value="Medication/203" />
+      </medicationReference>
+      <reasonReference>
+          <reference value="Condition/ConditionReasonreference01" />
+          <identifier>
+              <value value="ConditionReasonreference01" />
+          </identifier>
+          <display value="ConditionReasonreference01 partOf reference" />
+      </reasonReference>
+      <reasonReference>
+          <reference value="Observation/ObservationReasonreference02" />
+          <identifier>
+              <value value="ObservationReasonreference02" />
+          </identifier>
+          <display value="ObservationReasonreference02 partOf reference" />
+      </reasonReference>
+      <reasonReference>
+          <reference value="DiagnosticReport/DiagnosticReportReasonreference02" />
+          <identifier>
+              <value value="DiagnosticReportReasonreference02" />
+          </identifier>
+          <display value="DiagnosticReportReasonreference02 partOf reference" />
+      </reasonReference>
+      <request>
+          <reference value="MedicationRequest/MedicationRequest001"/>
+          <identifier>
+              <value value="MedicationRequest001"/>
+          </identifier>
+          <display value="MedicationRequest001"/>
+      </request>
+      <device>
+          <reference value="Device/Device01"/>
+          <identifier>
+              <value value="Device01"/>
+          </identifier>
+          <display value="Device01"/>
+      </device>
+      <device>
+          <reference value="Device/Device02"/>
+          <identifier>
+              <value value="Device02"/>
+          </identifier>
+          <display value="Device02"/>
+      </device>
+      <note>
+          <authorReference>
+              <reference value="Practitioner/AuthRef001"/>
+              <identifier>
+                  <value value="AuthRef001"/>
+              </identifier>
+              <display value="Practitioner"/>
+          </authorReference>
+          <time value="1993-07-27"/>
+          <text value="this is authors note"/>
+      </note>
+      <note>
+          <authorString value="Practitioner/AuthRef001"/>
+          <time value="1993-07-28"/>
+          <text value="this is authors note"/>
+      </note>
+      <dosage>
+          <text value="additional dosage text"/>
+          <dose>
+              <value value="1"/>
+              <unit value="Brausetablette"/>
+              <system value="http://unitsofmeasure.org"/>
+              <code value="1"/>
+          </dose>
+          <rateRatio>
+              <numerator>
+                  <value value="500.0" />
+                  <unit value="Milliliter" />
+                  <system value="http://unitsofmeasure.org" />
+                  <code value="mL" />
+              </numerator>
+              <denominator>
+                  <value value="400.0" />
+                  <unit value="Milliliter" />
+                  <system value="http://unitsofmeasure.org" />
+                  <code value="mL" />
+              </denominator>
+          </rateRatio>
+          <site>
+              <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="29721302"/>
+                  <display value="Stomach left-side (finding)"/>
+              </coding>
+              <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="297213033"/>
+                  <display value="Stomach middle (finding)"/>
+              </coding>
+              <text value="site of the finding"/>
+          </site>
+          <route>
+              <coding>
+                  <system value="http://standardterms.edqm.eu"/>
+                  <code value="29721302"/>
+                  <display value="Mouth (finding)"/>
+              </coding>
+              <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="297213033"/>
+                  <display value="Oral"/>
+              </coding>
+              <text value="site of the finding"/>
+          </route>
+          <method>
+              <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="Units"/>
+                  <display value="Units"/>
+              </coding>
+          </method>
+      </dosage>
+      <eventHistory>
+          <reference value="Provenance/Provenance01"/>
+          <identifier>
+              <value value="Provenance01"/>
+          </identifier>
+          <display value="Author's Signature"/>
+      </eventHistory>
+      <eventHistory>
+          <reference value="Provenance/Provenance01"/>
+          <identifier>
+              <value value="Provenance01"/>
+          </identifier>
+          <display value="Author's Signature"/>
+      </eventHistory>
+  </MedicationAdministration>
+}

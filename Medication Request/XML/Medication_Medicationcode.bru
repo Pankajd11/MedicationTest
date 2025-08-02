@@ -1,0 +1,26 @@
+meta {
+  name: Medication_Medicationcode
+  type: http
+  seq: 12
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationRequest?medication.code=http://fhir.de/CodeSystem/abdata/wg14|WG143AB24&page=12
+  body: none
+  auth: bearer
+}
+
+params:query {
+  medication.code: http://fhir.de/CodeSystem/abdata/wg14|WG143AB24
+  page: 12
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

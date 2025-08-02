@@ -1,0 +1,26 @@
+meta {
+  name: Medication_date
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationRequest?date=2024-06-03
+  body: none
+  auth: bearer
+}
+
+params:query {
+  date: 2024-06-03
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+  Authorization: Bearer {{token}}
+}
+
+auth:bearer {
+  token: {{token}}
+}

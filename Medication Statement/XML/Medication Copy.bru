@@ -1,0 +1,21 @@
+meta {
+  name: Medication Copy
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{im1asurl}}api/v3/fhir/Encounter/1138716
+  body: none
+  auth: bearer
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

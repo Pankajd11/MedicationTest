@@ -1,0 +1,30 @@
+meta {
+  name: Medication_ID copy
+  type: http
+  seq: 14
+}
+
+get {
+  url: {{im1asurl}}/api/v2/fhir/Medication?_id={{id}}
+  body: none
+  auth: bearer
+}
+
+params:query {
+  _id: {{id}}
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+  ~Authorization: Bearer {{token}}
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+vars:pre-request {
+  id: 305
+}

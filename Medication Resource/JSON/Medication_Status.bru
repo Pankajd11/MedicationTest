@@ -1,0 +1,26 @@
+meta {
+  name: Medication_Status
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir//Medication?status=active&enablelogging=true 
+  body: none
+  auth: bearer
+}
+
+params:query {
+  status: active
+  enablelogging: true 
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  Accept: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}

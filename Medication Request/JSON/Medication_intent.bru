@@ -1,0 +1,25 @@
+meta {
+  name: Medication_intent
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationRequest?intent=original-order
+  body: none
+  auth: bearer
+}
+
+params:query {
+  intent: original-order
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

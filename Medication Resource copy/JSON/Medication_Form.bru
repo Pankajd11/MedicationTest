@@ -1,0 +1,25 @@
+meta {
+  name: Medication_Form
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/Medication?form=http://standardterms.edqm.eu|10518000
+  body: none
+  auth: bearer
+}
+
+params:query {
+  form: http://standardterms.edqm.eu|10518000
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  Accept: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}

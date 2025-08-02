@@ -1,0 +1,164 @@
+meta {
+  name: SaveMedication JSON Max data
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{im1asurl}}api/v2/fhir/Medication/443
+  body: json
+  auth: none
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json; charset=utf-8
+  content: application/fhir+json
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+      "code": {
+          "text": "Infusion bestehend aus 85mg Döxörubicin aufgeloest zur Verabreichung in 250ml 5-%iger (50 mg/ml) Glucose-Infusionsloesung",
+      "coding":[
+              {
+                  "system":"http://fhir.de/CodeSystem/ifa/pzn",
+                  "code":"#05387239",
+                  "display":"Aspirin® N 100mg, Tbl."
+              },
+              {
+                  "system":"http://fhir.de/CodeSystem/bfarm/atc",
+                  "code":"#B01AC06",
+                  "display":"100 mg Acetylsalicylsäure"
+  
+              },
+              {
+                  "system":"http://fhir.de/CodeSystem/abdata/wg14",
+                  "code":"#HI_CMV",
+                  "display":"Transfusion von Plasma und Plasmabestandteilen"
+              }
+          ]
+      },
+      "status":"active",
+      
+       "form": {
+          "text": "#this is text of form-text, the medicine should be taken orally",
+          "coding":[
+              {
+                  "system":"http://standardterms.edqm.eu",
+                  "code":"#1122334455",
+                  "display":"Solution for infusion"
+              }
+          ]
+      },
+      "amount": {
+          "numerator": {
+              "value": "010.010",
+              "unit": "rs",
+              "system": "http://unitsofmeasure.org",
+              "code": "#rs"
+          },
+          "denominator": {
+              "value": "0.01000",
+              "unit": "Milliliter",
+              "system": "http://unitsofmeasure.org",
+              "code": "#mL"
+          }
+      },
+      "ingredient": [
+          {
+              "itemCodeableConcept": {
+                              "coding": [
+                                  {
+                                      "system": "http://fhir.de/CodeSystem/bfarm/atc",
+                                      "code": "#L01XX02",
+                                      "display": "L-Asparaginase aus Erwinia chrysanthemi [Erwinase], parenteral"
+                                  },
+                                  {
+                                      "system": "http://fhir.de/CodeSystem/abdata/wg14",
+                                      "code": "#HI_CMV",
+                                      "display": "Transfusion von Plasma und Plasmabestandteilen und gentechnisch hergestellten Plasmaproteinen: Human-Immunglobulin, spezifisch gegen Zytomeglie-Virus"
+                                  },
+                                  {
+                                      "system": "http://fhir.de/CodeSystem/ifa/pzn",
+                                      "code": "#3754679",
+                                      "display": "BELOC ZOK "
+                                  },
+                                  {
+                                      "system": "http://fhir.de/CodeSystem/ask",
+                                      "code": "#375467912",
+                                      "display": "BELOC ZOK ask code"
+                                  }
+                              ],
+                              "text": "#Ingredient text"
+                          },
+              "isActive": "1",
+              "strength": {
+                  "numerator": {
+                      "value": "23.010239",
+                      "unit": "mg",
+                      "system": "http://unitsofmeasure.org",
+                      "code": "#mg"
+                  },
+                  "denominator": {
+                      "value": "2501234589785795.39",
+                      "unit": "Milliliter",
+                      "system": "http://unitsofmeasure.org",
+                      "code": "#mL"
+                  }
+              },
+              "extension": [
+                  {
+                      "valueCoding": {
+                          "system": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/CodeSystem/wirkstofftyp",
+                          "code": "IN"
+                      },
+                      "url": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/wirkstofftyp"
+                  }
+              ]   
+          },
+          {
+              "itemReference":{
+                  "reference": "Substance/7f27cb8d-940b-43fd-ab8b-fee5b7a9b060"
+              }
+          }
+          
+      ],
+      "batch": {
+          "lotNumber": "#987654321",
+          "expirationDate": "1964-08-12T00:00:00"
+      },
+       
+      "resourceType": "Medication",
+      "id": "443",
+      "meta": {
+          "profile": [
+              "https://gematik.de/fhir/isik/v2/Medikation/StructureDefinition/ISiKMedikament"
+          ]
+      }
+  }
+}
+
+tests {
+  test("To check API Status",function(){
+      expect(res.getStatus()).to.equal(201)
+  });
+  
+  var tv4 = require('tv4');
+  var responseBody = JSON.stringify(res.getBody());
+  
+  
+  // Extract the JSON Schema from the environment or collection
+  var jsonSchema = bru.getVar("schemaMddication");
+  console.log(jsonSchema)
+  //var result = tv4.validate(responseBody, jsonSchema);
+  var responseBody = xml2Json(responseBody);
+  var result = tv4.validate(responseBody, jsonSchema);
+  
+  // Check if validation passed
+  test("Verifying Schema validation", function () {
+      expect(result).to.be.true;
+  });
+  
+}

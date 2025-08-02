@@ -1,0 +1,27 @@
+meta {
+  name: Medication_ingredient
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/Medication?ingredient=Substance/001&enablelogging=True&disablepaging=False
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ingredient: Substance/001
+  enablelogging: True
+  disablepaging: False
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

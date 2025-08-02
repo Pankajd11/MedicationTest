@@ -1,0 +1,25 @@
+meta {
+  name: Medication_authoredon
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationRequest?authoredon=2021-07-01
+  body: none
+  auth: bearer
+}
+
+params:query {
+  authoredon: 2021-07-01
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

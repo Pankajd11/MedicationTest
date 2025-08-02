@@ -1,0 +1,25 @@
+meta {
+  name: Medication_performer
+  type: http
+  seq: 15
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationAdministration?performer=PractitionerWalterArzt-Performer
+  body: none
+  auth: bearer
+}
+
+params:query {
+  performer: PractitionerWalterArzt-Performer
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,27 @@
+meta {
+  name: Medication_Code
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationAdministration?code=http://fhir.de/CodeSystem/bfarm/atc|V03AB23&enablelogging=true&disablepaging=true
+  body: none
+  auth: bearer
+}
+
+params:query {
+  code: http://fhir.de/CodeSystem/bfarm/atc|V03AB23
+  enablelogging: true
+  disablepaging: true
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  Accept: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}

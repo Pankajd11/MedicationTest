@@ -1,0 +1,32 @@
+meta {
+  name: MedicationStat_Identifier Copy
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationStatement?context.identifier=4417592&enablelogging=True
+  body: none
+  auth: bearer
+}
+
+params:query {
+  context.identifier: 4417592
+  enablelogging: True
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  Accept: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Content verification", function () {
+      expect(JSON.stringify(res.getBody())).to.include("f0024");
+  });
+}

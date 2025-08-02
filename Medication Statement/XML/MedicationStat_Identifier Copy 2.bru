@@ -1,0 +1,32 @@
+meta {
+  name: MedicationStat_Identifier Copy 2
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationStatement?context.identifier=http://iMedOne.de/fhir/v1/identifiers/i1FallNummer|4417592&enablelogging=True
+  body: none
+  auth: bearer
+}
+
+params:query {
+  context.identifier: http://iMedOne.de/fhir/v1/identifiers/i1FallNummer|4417592
+  enablelogging: True
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Content verification", function () {
+      expect(JSON.stringify(res.getBody())).to.include("f0024");
+  });
+}

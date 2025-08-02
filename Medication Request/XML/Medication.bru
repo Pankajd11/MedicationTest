@@ -1,0 +1,18 @@
+meta {
+  name: Medication
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationRequest/713
+  body: none
+  auth: none
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+  Authorization: Bearer {{token}}
+}

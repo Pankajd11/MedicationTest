@@ -1,0 +1,21 @@
+meta {
+  name: Medication
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/Medication/220
+  body: none
+  auth: bearer
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  Accept: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}

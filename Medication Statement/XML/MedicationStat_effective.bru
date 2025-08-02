@@ -1,0 +1,28 @@
+meta {
+  name: MedicationStat_effective
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationStatement?effective=ge2025-02-01&_Include=MedicationStatement:medication&enablelogging=true&disablepaging=true
+  body: none
+  auth: bearer
+}
+
+params:query {
+  effective: ge2025-02-01
+  _Include: MedicationStatement:medication
+  enablelogging: true
+  disablepaging: true
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,26 @@
+meta {
+  name: MedicationStat_part-of
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationStatement?part-of=MedicationStatement/MedicationStatement01&page=3
+  body: none
+  auth: bearer
+}
+
+params:query {
+  part-of: MedicationStatement/MedicationStatement01
+  page: 3
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  Accept: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}

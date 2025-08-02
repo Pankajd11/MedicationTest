@@ -1,0 +1,25 @@
+meta {
+  name: Medication_Medicationcode
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationAdministration?medication.code=http://fhir.de/CodeSystem/bfarm/atc|ATCV03AB23
+  body: none
+  auth: bearer
+}
+
+params:query {
+  medication.code: http://fhir.de/CodeSystem/bfarm/atc|ATCV03AB23
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  Accept: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}

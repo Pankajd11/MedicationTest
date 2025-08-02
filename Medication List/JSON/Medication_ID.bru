@@ -1,0 +1,27 @@
+meta {
+  name: Medication_ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/List?_id=206&enablelogging=true&disablepaging=true
+  body: none
+  auth: bearer
+}
+
+params:query {
+  _id: 206
+  enablelogging: true
+  disablepaging: true
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  Accept: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}

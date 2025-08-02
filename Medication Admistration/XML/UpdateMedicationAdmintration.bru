@@ -1,0 +1,54 @@
+meta {
+  name: UpdateMedicationAdmintration
+  type: http
+  seq: 18
+}
+
+put {
+  url: https://rd-vm01.rd.dtcs.local/iM1AS_QO999/api/v3/fhir/MedicationAdministration/360
+  body: xml
+  auth: bearer
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:xml {
+  <?xml version="1.0" encoding="utf-8"?>
+  <MedicationAdministration xmlns="http://hl7.org/fhir">
+  <id value="360"/>
+      <meta>
+          <profile value="https://gematik.de/fhir/isik/v3/Medikation/StructureDefinition/ISiKMedikationsVerabreichung"/>
+      </meta>
+      <status value="not-done"/>
+      <subject>
+          <reference value="Patient/741" />
+          <identifier>
+              <value value="741" />
+          </identifier>
+          <display value="Patient Subject reference" />
+      </subject>
+      <effectivePeriod>
+          <end value="9999-12-31"/>
+      </effectivePeriod>
+      <medicationReference>
+          <reference value="Medication/medicationReference" />
+      </medicationReference>
+      <note>
+          <authorString value="Note that FHIR strings SHALL NOT exceed 1MB in size"/>
+          <time value="1993-07-27"/>
+          <text value="this is authors note"/>
+      </note>
+      <note>
+          <authorString value="Practitioner/AuthRef001"/>
+          <text value="this is authors noteSystems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the text should be readable without markdown processing. The markdown syntax is GFM - see https://github.github.com/gfm/Systems are not required to have markdown support, so the "/>
+      </note>
+  </MedicationAdministration>
+}

@@ -1,0 +1,25 @@
+meta {
+  name: MedicationStat_effective
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{im1asurl}}api/v2/fhir/MedicationStatement?effective=2024-05-15
+  body: none
+  auth: bearer
+}
+
+params:query {
+  effective: 2024-05-15
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+json
+  Accept: application/fhir+json
+}
+
+auth:bearer {
+  token: {{token}}
+}

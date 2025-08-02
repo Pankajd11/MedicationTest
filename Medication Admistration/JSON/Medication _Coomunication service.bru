@@ -1,0 +1,182 @@
+meta {
+  name: Medication _Coomunication service
+  type: http
+  seq: 20
+}
+
+post {
+  url: http://10.35.41.13/FHIRCommunicationService_qo999/v2/MedicationRequest
+  body: xml
+  auth: bearer
+}
+
+headers {
+  Upgrade: TLS 1.2
+  Content-Type: application/fhir+xml
+  Accept: application/fhir+xml
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:xml {
+  <?xml version="1.0" encoding="utf-8"?>
+  <MedicationRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir">
+      <meta>
+          <profile value="https://gematik.de/fhir/isik/v2/Medikation/StructureDefinition/ISiKMedikationsVerordnung" />
+      </meta>
+      <status value="on-hold" />
+      <intent value="original-order" />	
+      <priority value="stat"/>
+  	<medicationReference>
+          <reference value="Medication/medicationReference" />
+  	</medicationReference>
+      <subject>
+          <reference value="Patient/PatientinMusterfrau" />
+      </subject>
+     <encounter> 
+          <reference value="Encounter/f001"/> 
+          <display value="encounter who leads to this prescription"/> 
+          <Identifier>
+          <use value="official" />
+          <type value="MCN" />
+          <system value="http://www.acme.com/identifiers/patient" />
+          <value value="123456" />
+          <period>
+              <start value="2015-01-15"/> 
+              <end value="2015-01-20"/> 
+          </period>
+          <assigner>
+          <reference value="Encounter/Encounter" />
+          </assigner>
+          </Identifier>
+      </encounter> 
+      <requester>
+          <reference value="Practitioner/PractitionerWalterArzt" />
+      </requester>
+  	<note>
+       <text value="this is authors note"/>
+      </note>
+      <note>
+       <text value="this is authors note 2"/>
+      </note>
+      <dosageInstruction>
+  	<text value="Primitive Type string" />
+  		<site> 
+              <coding> 
+                  <system value="http://snomed.info/sct"/> 
+                  <code value="26643006"/> 
+                  <display value="Oral Route"/> 
+              </coding> 
+  			<text value="Gosage of an site" />
+          </site> 
+          <route> 
+              <coding> 
+                  <system value="http://snomed.info/id/118168003"/> 
+                  <code value="118168003"/> 
+                  <display value="Oral Route"/> 
+              </coding> 
+  			 <coding>
+              <system value="http://standardterms.edqm.eu" />
+              <code value="20003000" />
+              <display value="Cutaneous use" />
+          </coding>
+          </route> 
+  		<coding>
+  		    <system value="http://snomed.info/sct" />
+  			<code value="Units" />
+  			<display value="Units" />
+  		</coding>
+          <doseAndRate>
+  			<doseRange>
+  			<low>
+                  <value value="1" />
+                  <unit value="Brausetablette" />
+                  <system value="http://unitsofmeasure.org" />
+                  <code value="1" />
+  			</low>
+  			<high>
+                  <value value="1" />
+                  <unit value="Brausetablette" />
+                  <system value="http://unitsofmeasure.org" />
+                  <code value="1" />
+  			</high>
+              </doseRange>
+          </doseAndRate>
+  		
+  		 <maxDosePerAdministration>
+  		  <value value="500"/> 
+            <system value="http://unitsofmeasure.org"/> 
+            <code value="mL"/> 
+  		  <unit value="mL"/>
+  		  </maxDosePerAdministration>
+  		<maxDosePerLifetime> 
+            <system value="http://unitsofmeasure.org"/> 
+  		  <unit value="mL"/>
+           <value value="25.3"/>
+           <code value="mL" />
+  		</maxDosePerLifetime>	  
+      </dosageInstruction>
+  	 <dispenseRequest>
+          <validityPeriod>
+              <start value="2015-01-15"/>
+              <end value="2016-01-15"/>
+          </validityPeriod>
+          <numberOfRepeatsAllowed value="1"/>
+          <dispenseInterval>
+              <value value="6"/>
+              <unit value="hours"/>
+              <system value="http://unitsofmeasure.org"/>
+              <code value="hl7"/>
+          </dispenseInterval>
+          <quantity>
+              <value value="3"/>
+              <unit value="days"/>
+              <system value="http://unitsofmeasure.org"/>
+              <code value="d"/>
+          </quantity>
+          <expectedSupplyDuration>
+              <value value="3"/>
+              <unit value="days"/>
+              <system value="http://unitsofmeasure.org"/>
+              <code value="d"/>
+          </expectedSupplyDuration>
+          <performer>
+              <reference value="Organization/f001"/>
+          </performer>
+          <initialFill>
+              <quantity>
+                  <value value="1"/>
+                  <unit value="min"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="m"/>
+              </quantity>
+              <duration>
+                  <value value="3"/>
+                  <unit value="days"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+              </duration>
+          </initialFill>
+      </dispenseRequest>
+  	 <substitution>
+          <allowedCodeableConcept>
+              <coding>
+                  <system value="http://snomed.info/sct" />
+                  <code value="297217002" />
+                  <display value="Rib Pain (finding)" />
+              </coding>
+          </allowedCodeableConcept>
+          <reason>
+              <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-ActReason"/>
+                  <code value="_ActAccommodationReason"/>
+                  <display value="Identifies the reason the patient is assigned to this accommodation type"/>
+              </coding>
+          </reason>
+      </substitution>	
+  </MedicationRequest>
+  
+  
+}
